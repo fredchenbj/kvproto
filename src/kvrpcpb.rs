@@ -10544,6 +10544,1019 @@ impl ::protobuf::reflect::ProtobufValue for RawBatchPutResponse {
 }
 
 #[derive(PartialEq,Clone,Default)]
+pub struct RawUpdateRequest {
+    // message fields
+    pub context: ::protobuf::SingularPtrField<Context>,
+    pub key: ::std::vec::Vec<u8>,
+    pub value: ::std::vec::Vec<u8>,
+    pub cf: ::std::string::String,
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+impl RawUpdateRequest {
+    pub fn new() -> RawUpdateRequest {
+        ::std::default::Default::default()
+    }
+
+    // .kvrpcpb.Context context = 1;
+
+    pub fn clear_context(&mut self) {
+        self.context.clear();
+    }
+
+    pub fn has_context(&self) -> bool {
+        self.context.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_context(&mut self, v: Context) {
+        self.context = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_context(&mut self) -> &mut Context {
+        if self.context.is_none() {
+            self.context.set_default();
+        }
+        self.context.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_context(&mut self) -> Context {
+        self.context.take().unwrap_or_else(|| Context::new())
+    }
+
+    pub fn get_context(&self) -> &Context {
+        self.context.as_ref().unwrap_or_else(|| Context::default_instance())
+    }
+
+    // bytes key = 2;
+
+    pub fn clear_key(&mut self) {
+        self.key.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_key(&mut self, v: ::std::vec::Vec<u8>) {
+        self.key = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_key(&mut self) -> &mut ::std::vec::Vec<u8> {
+        &mut self.key
+    }
+
+    // Take field
+    pub fn take_key(&mut self) -> ::std::vec::Vec<u8> {
+        ::std::mem::replace(&mut self.key, ::std::vec::Vec::new())
+    }
+
+    pub fn get_key(&self) -> &[u8] {
+        &self.key
+    }
+
+    // bytes value = 3;
+
+    pub fn clear_value(&mut self) {
+        self.value.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_value(&mut self, v: ::std::vec::Vec<u8>) {
+        self.value = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_value(&mut self) -> &mut ::std::vec::Vec<u8> {
+        &mut self.value
+    }
+
+    // Take field
+    pub fn take_value(&mut self) -> ::std::vec::Vec<u8> {
+        ::std::mem::replace(&mut self.value, ::std::vec::Vec::new())
+    }
+
+    pub fn get_value(&self) -> &[u8] {
+        &self.value
+    }
+
+    // string cf = 4;
+
+    pub fn clear_cf(&mut self) {
+        self.cf.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_cf(&mut self, v: ::std::string::String) {
+        self.cf = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_cf(&mut self) -> &mut ::std::string::String {
+        &mut self.cf
+    }
+
+    // Take field
+    pub fn take_cf(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.cf, ::std::string::String::new())
+    }
+
+    pub fn get_cf(&self) -> &str {
+        &self.cf
+    }
+}
+
+impl ::protobuf::Message for RawUpdateRequest {
+    fn is_initialized(&self) -> bool {
+        for v in &self.context {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.context)?;
+                },
+                2 => {
+                    ::protobuf::rt::read_singular_proto3_bytes_into(wire_type, is, &mut self.key)?;
+                },
+                3 => {
+                    ::protobuf::rt::read_singular_proto3_bytes_into(wire_type, is, &mut self.value)?;
+                },
+                4 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.cf)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if let Some(ref v) = self.context.as_ref() {
+            let len = v.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
+        if !self.key.is_empty() {
+            my_size += ::protobuf::rt::bytes_size(2, &self.key);
+        }
+        if !self.value.is_empty() {
+            my_size += ::protobuf::rt::bytes_size(3, &self.value);
+        }
+        if !self.cf.is_empty() {
+            my_size += ::protobuf::rt::string_size(4, &self.cf);
+        }
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        if let Some(ref v) = self.context.as_ref() {
+            os.write_tag(1, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        if !self.key.is_empty() {
+            os.write_bytes(2, &self.key)?;
+        }
+        if !self.value.is_empty() {
+            os.write_bytes(3, &self.value)?;
+        }
+        if !self.cf.is_empty() {
+            os.write_string(4, &self.cf)?;
+        }
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> RawUpdateRequest {
+        RawUpdateRequest::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Context>>(
+                    "context",
+                    |m: &RawUpdateRequest| { &m.context },
+                    |m: &mut RawUpdateRequest| { &mut m.context },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBytes>(
+                    "key",
+                    |m: &RawUpdateRequest| { &m.key },
+                    |m: &mut RawUpdateRequest| { &mut m.key },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBytes>(
+                    "value",
+                    |m: &RawUpdateRequest| { &m.value },
+                    |m: &mut RawUpdateRequest| { &mut m.value },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "cf",
+                    |m: &RawUpdateRequest| { &m.cf },
+                    |m: &mut RawUpdateRequest| { &mut m.cf },
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<RawUpdateRequest>(
+                    "RawUpdateRequest",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static RawUpdateRequest {
+        static mut instance: ::protobuf::lazy::Lazy<RawUpdateRequest> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const RawUpdateRequest,
+        };
+        unsafe {
+            instance.get(RawUpdateRequest::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for RawUpdateRequest {
+    fn clear(&mut self) {
+        self.clear_context();
+        self.clear_key();
+        self.clear_value();
+        self.clear_cf();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for RawUpdateRequest {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for RawUpdateRequest {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
+pub struct RawUpdateResponse {
+    // message fields
+    pub region_error: ::protobuf::SingularPtrField<super::errorpb::Error>,
+    pub error: ::std::string::String,
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+impl RawUpdateResponse {
+    pub fn new() -> RawUpdateResponse {
+        ::std::default::Default::default()
+    }
+
+    // .errorpb.Error region_error = 1;
+
+    pub fn clear_region_error(&mut self) {
+        self.region_error.clear();
+    }
+
+    pub fn has_region_error(&self) -> bool {
+        self.region_error.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_region_error(&mut self, v: super::errorpb::Error) {
+        self.region_error = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_region_error(&mut self) -> &mut super::errorpb::Error {
+        if self.region_error.is_none() {
+            self.region_error.set_default();
+        }
+        self.region_error.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_region_error(&mut self) -> super::errorpb::Error {
+        self.region_error.take().unwrap_or_else(|| super::errorpb::Error::new())
+    }
+
+    pub fn get_region_error(&self) -> &super::errorpb::Error {
+        self.region_error.as_ref().unwrap_or_else(|| super::errorpb::Error::default_instance())
+    }
+
+    // string error = 2;
+
+    pub fn clear_error(&mut self) {
+        self.error.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_error(&mut self, v: ::std::string::String) {
+        self.error = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_error(&mut self) -> &mut ::std::string::String {
+        &mut self.error
+    }
+
+    // Take field
+    pub fn take_error(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.error, ::std::string::String::new())
+    }
+
+    pub fn get_error(&self) -> &str {
+        &self.error
+    }
+}
+
+impl ::protobuf::Message for RawUpdateResponse {
+    fn is_initialized(&self) -> bool {
+        for v in &self.region_error {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.region_error)?;
+                },
+                2 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.error)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if let Some(ref v) = self.region_error.as_ref() {
+            let len = v.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
+        if !self.error.is_empty() {
+            my_size += ::protobuf::rt::string_size(2, &self.error);
+        }
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        if let Some(ref v) = self.region_error.as_ref() {
+            os.write_tag(1, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        if !self.error.is_empty() {
+            os.write_string(2, &self.error)?;
+        }
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> RawUpdateResponse {
+        RawUpdateResponse::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<super::errorpb::Error>>(
+                    "region_error",
+                    |m: &RawUpdateResponse| { &m.region_error },
+                    |m: &mut RawUpdateResponse| { &mut m.region_error },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "error",
+                    |m: &RawUpdateResponse| { &m.error },
+                    |m: &mut RawUpdateResponse| { &mut m.error },
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<RawUpdateResponse>(
+                    "RawUpdateResponse",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static RawUpdateResponse {
+        static mut instance: ::protobuf::lazy::Lazy<RawUpdateResponse> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const RawUpdateResponse,
+        };
+        unsafe {
+            instance.get(RawUpdateResponse::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for RawUpdateResponse {
+    fn clear(&mut self) {
+        self.clear_region_error();
+        self.clear_error();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for RawUpdateResponse {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for RawUpdateResponse {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
+pub struct RawBatchUpdateRequest {
+    // message fields
+    pub context: ::protobuf::SingularPtrField<Context>,
+    pub pairs: ::protobuf::RepeatedField<KvPair>,
+    pub cf: ::std::string::String,
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+impl RawBatchUpdateRequest {
+    pub fn new() -> RawBatchUpdateRequest {
+        ::std::default::Default::default()
+    }
+
+    // .kvrpcpb.Context context = 1;
+
+    pub fn clear_context(&mut self) {
+        self.context.clear();
+    }
+
+    pub fn has_context(&self) -> bool {
+        self.context.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_context(&mut self, v: Context) {
+        self.context = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_context(&mut self) -> &mut Context {
+        if self.context.is_none() {
+            self.context.set_default();
+        }
+        self.context.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_context(&mut self) -> Context {
+        self.context.take().unwrap_or_else(|| Context::new())
+    }
+
+    pub fn get_context(&self) -> &Context {
+        self.context.as_ref().unwrap_or_else(|| Context::default_instance())
+    }
+
+    // repeated .kvrpcpb.KvPair pairs = 2;
+
+    pub fn clear_pairs(&mut self) {
+        self.pairs.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_pairs(&mut self, v: ::protobuf::RepeatedField<KvPair>) {
+        self.pairs = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_pairs(&mut self) -> &mut ::protobuf::RepeatedField<KvPair> {
+        &mut self.pairs
+    }
+
+    // Take field
+    pub fn take_pairs(&mut self) -> ::protobuf::RepeatedField<KvPair> {
+        ::std::mem::replace(&mut self.pairs, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_pairs(&self) -> &[KvPair] {
+        &self.pairs
+    }
+
+    // string cf = 3;
+
+    pub fn clear_cf(&mut self) {
+        self.cf.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_cf(&mut self, v: ::std::string::String) {
+        self.cf = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_cf(&mut self) -> &mut ::std::string::String {
+        &mut self.cf
+    }
+
+    // Take field
+    pub fn take_cf(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.cf, ::std::string::String::new())
+    }
+
+    pub fn get_cf(&self) -> &str {
+        &self.cf
+    }
+}
+
+impl ::protobuf::Message for RawBatchUpdateRequest {
+    fn is_initialized(&self) -> bool {
+        for v in &self.context {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        for v in &self.pairs {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.context)?;
+                },
+                2 => {
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.pairs)?;
+                },
+                3 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.cf)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if let Some(ref v) = self.context.as_ref() {
+            let len = v.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
+        for value in &self.pairs {
+            let len = value.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        };
+        if !self.cf.is_empty() {
+            my_size += ::protobuf::rt::string_size(3, &self.cf);
+        }
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        if let Some(ref v) = self.context.as_ref() {
+            os.write_tag(1, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        for v in &self.pairs {
+            os.write_tag(2, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        };
+        if !self.cf.is_empty() {
+            os.write_string(3, &self.cf)?;
+        }
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> RawBatchUpdateRequest {
+        RawBatchUpdateRequest::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Context>>(
+                    "context",
+                    |m: &RawBatchUpdateRequest| { &m.context },
+                    |m: &mut RawBatchUpdateRequest| { &mut m.context },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<KvPair>>(
+                    "pairs",
+                    |m: &RawBatchUpdateRequest| { &m.pairs },
+                    |m: &mut RawBatchUpdateRequest| { &mut m.pairs },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "cf",
+                    |m: &RawBatchUpdateRequest| { &m.cf },
+                    |m: &mut RawBatchUpdateRequest| { &mut m.cf },
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<RawBatchUpdateRequest>(
+                    "RawBatchUpdateRequest",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static RawBatchUpdateRequest {
+        static mut instance: ::protobuf::lazy::Lazy<RawBatchUpdateRequest> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const RawBatchUpdateRequest,
+        };
+        unsafe {
+            instance.get(RawBatchUpdateRequest::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for RawBatchUpdateRequest {
+    fn clear(&mut self) {
+        self.clear_context();
+        self.clear_pairs();
+        self.clear_cf();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for RawBatchUpdateRequest {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for RawBatchUpdateRequest {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
+pub struct RawBatchUpdateResponse {
+    // message fields
+    pub region_error: ::protobuf::SingularPtrField<super::errorpb::Error>,
+    pub error: ::std::string::String,
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+impl RawBatchUpdateResponse {
+    pub fn new() -> RawBatchUpdateResponse {
+        ::std::default::Default::default()
+    }
+
+    // .errorpb.Error region_error = 1;
+
+    pub fn clear_region_error(&mut self) {
+        self.region_error.clear();
+    }
+
+    pub fn has_region_error(&self) -> bool {
+        self.region_error.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_region_error(&mut self, v: super::errorpb::Error) {
+        self.region_error = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_region_error(&mut self) -> &mut super::errorpb::Error {
+        if self.region_error.is_none() {
+            self.region_error.set_default();
+        }
+        self.region_error.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_region_error(&mut self) -> super::errorpb::Error {
+        self.region_error.take().unwrap_or_else(|| super::errorpb::Error::new())
+    }
+
+    pub fn get_region_error(&self) -> &super::errorpb::Error {
+        self.region_error.as_ref().unwrap_or_else(|| super::errorpb::Error::default_instance())
+    }
+
+    // string error = 2;
+
+    pub fn clear_error(&mut self) {
+        self.error.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_error(&mut self, v: ::std::string::String) {
+        self.error = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_error(&mut self) -> &mut ::std::string::String {
+        &mut self.error
+    }
+
+    // Take field
+    pub fn take_error(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.error, ::std::string::String::new())
+    }
+
+    pub fn get_error(&self) -> &str {
+        &self.error
+    }
+}
+
+impl ::protobuf::Message for RawBatchUpdateResponse {
+    fn is_initialized(&self) -> bool {
+        for v in &self.region_error {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.region_error)?;
+                },
+                2 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.error)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if let Some(ref v) = self.region_error.as_ref() {
+            let len = v.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
+        if !self.error.is_empty() {
+            my_size += ::protobuf::rt::string_size(2, &self.error);
+        }
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        if let Some(ref v) = self.region_error.as_ref() {
+            os.write_tag(1, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        if !self.error.is_empty() {
+            os.write_string(2, &self.error)?;
+        }
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> RawBatchUpdateResponse {
+        RawBatchUpdateResponse::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<super::errorpb::Error>>(
+                    "region_error",
+                    |m: &RawBatchUpdateResponse| { &m.region_error },
+                    |m: &mut RawBatchUpdateResponse| { &mut m.region_error },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "error",
+                    |m: &RawBatchUpdateResponse| { &m.error },
+                    |m: &mut RawBatchUpdateResponse| { &mut m.error },
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<RawBatchUpdateResponse>(
+                    "RawBatchUpdateResponse",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static RawBatchUpdateResponse {
+        static mut instance: ::protobuf::lazy::Lazy<RawBatchUpdateResponse> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const RawBatchUpdateResponse,
+        };
+        unsafe {
+            instance.get(RawBatchUpdateResponse::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for RawBatchUpdateResponse {
+    fn clear(&mut self) {
+        self.clear_region_error();
+        self.clear_error();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for RawBatchUpdateResponse {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for RawBatchUpdateResponse {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
 pub struct RawBatchGetRequest {
     // message fields
     pub context: ::protobuf::SingularPtrField<Context>,
@@ -17834,92 +18847,103 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     R\x07context\x12%\n\x05pairs\x18\x02\x20\x03(\x0b2\x0f.kvrpcpb.KvPairR\
     \x05pairs\x12\x0e\n\x02cf\x18\x03\x20\x01(\tR\x02cf\"^\n\x13RawBatchPutR\
     esponse\x121\n\x0cregion_error\x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\
-    \x0bregionError\x12\x14\n\x05error\x18\x02\x20\x01(\tR\x05error\"d\n\x12\
-    RawBatchGetRequest\x12*\n\x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.C\
-    ontextR\x07context\x12\x12\n\x04keys\x18\x02\x20\x03(\x0cR\x04keys\x12\
-    \x0e\n\x02cf\x18\x03\x20\x01(\tR\x02cf\"o\n\x13RawBatchGetResponse\x121\
-    \n\x0cregion_error\x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionErr\
-    or\x12%\n\x05pairs\x18\x02\x20\x03(\x0b2\x0f.kvrpcpb.KvPairR\x05pairs\"`\
-    \n\x10RawDeleteRequest\x12*\n\x07context\x18\x01\x20\x01(\x0b2\x10.kvrpc\
-    pb.ContextR\x07context\x12\x10\n\x03key\x18\x02\x20\x01(\x0cR\x03key\x12\
-    \x0e\n\x02cf\x18\x03\x20\x01(\tR\x02cf\"\\\n\x11RawDeleteResponse\x121\n\
-    \x0cregion_error\x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\
-    \x12\x14\n\x05error\x18\x02\x20\x01(\tR\x05error\"g\n\x15RawBatchDeleteR\
-    equest\x12*\n\x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07c\
-    ontext\x12\x12\n\x04keys\x18\x02\x20\x03(\x0cR\x04keys\x12\x0e\n\x02cf\
-    \x18\x03\x20\x01(\tR\x02cf\"a\n\x16RawBatchDeleteResponse\x121\n\x0cregi\
-    on_error\x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\x14\
-    \n\x05error\x18\x02\x20\x01(\tR\x05error\"v\n\x12DeleteRangeRequest\x12*\
-    \n\x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12\
-    \x1b\n\tstart_key\x18\x02\x20\x01(\x0cR\x08startKey\x12\x17\n\x07end_key\
-    \x18\x03\x20\x01(\x0cR\x06endKey\"^\n\x13DeleteRangeResponse\x121\n\x0cr\
-    egion_error\x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\
-    \x14\n\x05error\x18\x02\x20\x01(\tR\x05error\"\x89\x01\n\x15RawDeleteRan\
-    geRequest\x12*\n\x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\
-    \x07context\x12\x1b\n\tstart_key\x18\x02\x20\x01(\x0cR\x08startKey\x12\
-    \x17\n\x07end_key\x18\x03\x20\x01(\x0cR\x06endKey\x12\x0e\n\x02cf\x18\
-    \x04\x20\x01(\tR\x02cf\"a\n\x16RawDeleteRangeResponse\x121\n\x0cregion_e\
+    \x0bregionError\x12\x14\n\x05error\x18\x02\x20\x01(\tR\x05error\"v\n\x10\
+    RawUpdateRequest\x12*\n\x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.Con\
+    textR\x07context\x12\x10\n\x03key\x18\x02\x20\x01(\x0cR\x03key\x12\x14\n\
+    \x05value\x18\x03\x20\x01(\x0cR\x05value\x12\x0e\n\x02cf\x18\x04\x20\x01\
+    (\tR\x02cf\"\\\n\x11RawUpdateResponse\x121\n\x0cregion_error\x18\x01\x20\
+    \x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\x14\n\x05error\x18\x02\
+    \x20\x01(\tR\x05error\"z\n\x15RawBatchUpdateRequest\x12*\n\x07context\
+    \x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12%\n\x05pairs\
+    \x18\x02\x20\x03(\x0b2\x0f.kvrpcpb.KvPairR\x05pairs\x12\x0e\n\x02cf\x18\
+    \x03\x20\x01(\tR\x02cf\"a\n\x16RawBatchUpdateResponse\x121\n\x0cregion_e\
     rror\x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\x14\n\
-    \x05error\x18\x02\x20\x01(\tR\x05error\"\xcd\x01\n\x0eRawScanRequest\x12\
-    *\n\x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12\
-    \x1b\n\tstart_key\x18\x02\x20\x01(\x0cR\x08startKey\x12\x14\n\x05limit\
-    \x18\x03\x20\x01(\rR\x05limit\x12\x19\n\x08key_only\x18\x04\x20\x01(\x08\
-    R\x07keyOnly\x12\x0e\n\x02cf\x18\x05\x20\x01(\tR\x02cf\x12\x18\n\x07reve\
-    rse\x18\x06\x20\x01(\x08R\x07reverse\x12\x17\n\x07end_key\x18\x07\x20\
-    \x01(\x0cR\x06endKey\"g\n\x0fRawScanResponse\x121\n\x0cregion_error\x18\
-    \x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12!\n\x03kvs\x18\
-    \x02\x20\x03(\x0b2\x0f.kvrpcpb.KvPairR\x03kvs\"@\n\x08KeyRange\x12\x1b\n\
-    \tstart_key\x18\x01\x20\x01(\x0cR\x08startKey\x12\x17\n\x07end_key\x18\
-    \x02\x20\x01(\x0cR\x06endKey\"\xd0\x01\n\x13RawBatchScanRequest\x12*\n\
-    \x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12)\n\
-    \x06ranges\x18\x02\x20\x03(\x0b2\x11.kvrpcpb.KeyRangeR\x06ranges\x12\x1d\
-    \n\neach_limit\x18\x03\x20\x01(\rR\teachLimit\x12\x19\n\x08key_only\x18\
-    \x04\x20\x01(\x08R\x07keyOnly\x12\x0e\n\x02cf\x18\x05\x20\x01(\tR\x02cf\
-    \x12\x18\n\x07reverse\x18\x06\x20\x01(\x08R\x07reverse\"l\n\x14RawBatchS\
-    canResponse\x121\n\x0cregion_error\x18\x01\x20\x01(\x0b2\x0e.errorpb.Err\
-    orR\x0bregionError\x12!\n\x03kvs\x18\x02\x20\x03(\x0b2\x0f.kvrpcpb.KvPai\
-    rR\x03kvs\"\x85\x01\n\tMvccWrite\x12\x1f\n\x04type\x18\x01\x20\x01(\x0e2\
-    \x0b.kvrpcpb.OpR\x04type\x12\x19\n\x08start_ts\x18\x02\x20\x01(\x04R\x07\
-    startTs\x12\x1b\n\tcommit_ts\x18\x03\x20\x01(\x04R\x08commitTs\x12\x1f\n\
-    \x0bshort_value\x18\x04\x20\x01(\x0cR\nshortValue\"<\n\tMvccValue\x12\
-    \x19\n\x08start_ts\x18\x01\x20\x01(\x04R\x07startTs\x12\x14\n\x05value\
-    \x18\x02\x20\x01(\x0cR\x05value\"\x81\x01\n\x08MvccLock\x12\x1f\n\x04typ\
-    e\x18\x01\x20\x01(\x0e2\x0b.kvrpcpb.OpR\x04type\x12\x19\n\x08start_ts\
-    \x18\x02\x20\x01(\x04R\x07startTs\x12\x18\n\x07primary\x18\x03\x20\x01(\
-    \x0cR\x07primary\x12\x1f\n\x0bshort_value\x18\x04\x20\x01(\x0cR\nshortVa\
-    lue\"\x89\x01\n\x08MvccInfo\x12%\n\x04lock\x18\x01\x20\x01(\x0b2\x11.kvr\
-    pcpb.MvccLockR\x04lock\x12*\n\x06writes\x18\x02\x20\x03(\x0b2\x12.kvrpcp\
-    b.MvccWriteR\x06writes\x12*\n\x06values\x18\x03\x20\x03(\x0b2\x12.kvrpcp\
-    b.MvccValueR\x06values\"S\n\x13MvccGetByKeyRequest\x12*\n\x07context\x18\
-    \x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12\x10\n\x03key\x18\
-    \x02\x20\x01(\x0cR\x03key\"\x86\x01\n\x14MvccGetByKeyResponse\x121\n\x0c\
-    region_error\x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\
-    \x14\n\x05error\x18\x02\x20\x01(\tR\x05error\x12%\n\x04info\x18\x03\x20\
-    \x01(\x0b2\x11.kvrpcpb.MvccInfoR\x04info\"`\n\x17MvccGetByStartTsRequest\
+    \x05error\x18\x02\x20\x01(\tR\x05error\"d\n\x12RawBatchGetRequest\x12*\n\
+    \x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12\
+    \x12\n\x04keys\x18\x02\x20\x03(\x0cR\x04keys\x12\x0e\n\x02cf\x18\x03\x20\
+    \x01(\tR\x02cf\"o\n\x13RawBatchGetResponse\x121\n\x0cregion_error\x18\
+    \x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12%\n\x05pairs\x18\
+    \x02\x20\x03(\x0b2\x0f.kvrpcpb.KvPairR\x05pairs\"`\n\x10RawDeleteRequest\
     \x12*\n\x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\
-    \x12\x19\n\x08start_ts\x18\x02\x20\x01(\x04R\x07startTs\"\x9c\x01\n\x18M\
-    vccGetByStartTsResponse\x121\n\x0cregion_error\x18\x01\x20\x01(\x0b2\x0e\
-    .errorpb.ErrorR\x0bregionError\x12\x14\n\x05error\x18\x02\x20\x01(\tR\
-    \x05error\x12\x10\n\x03key\x18\x03\x20\x01(\x0cR\x03key\x12%\n\x04info\
-    \x18\x04\x20\x01(\x0b2\x11.kvrpcpb.MvccInfoR\x04info\"]\n\x12SplitRegion\
-    Request\x12*\n\x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07\
-    context\x12\x1b\n\tsplit_key\x18\x02\x20\x01(\x0cR\x08splitKey\"\x92\x01\
-    \n\x13SplitRegionResponse\x121\n\x0cregion_error\x18\x01\x20\x01(\x0b2\
-    \x0e.errorpb.ErrorR\x0bregionError\x12\"\n\x04left\x18\x02\x20\x01(\x0b2\
-    \x0e.metapb.RegionR\x04left\x12$\n\x05right\x18\x03\x20\x01(\x0b2\x0e.me\
-    tapb.RegionR\x05right\"}\n\x19UnsafeDestroyRangeRequest\x12*\n\x07contex\
-    t\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12\x1b\n\tstart\
-    _key\x18\x02\x20\x01(\x0cR\x08startKey\x12\x17\n\x07end_key\x18\x03\x20\
-    \x01(\x0cR\x06endKey\"e\n\x1aUnsafeDestroyRangeResponse\x121\n\x0cregion\
-    _error\x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\x14\n\
-    \x05error\x18\x02\x20\x01(\tR\x05error*+\n\nCommandPri\x12\n\n\x06Normal\
-    \x10\0\x12\x07\n\x03Low\x10\x01\x12\x08\n\x04High\x10\x02*\x20\n\x0eIsol\
-    ationLevel\x12\x06\n\x02SI\x10\0\x12\x06\n\x02RC\x10\x01*:\n\x02Op\x12\
-    \x07\n\x03Put\x10\0\x12\x07\n\x03Del\x10\x01\x12\x08\n\x04Lock\x10\x02\
-    \x12\x0c\n\x08Rollback\x10\x03\x12\n\n\x06Insert\x10\x04*.\n\tAssertion\
-    \x12\x08\n\x04None\x10\0\x12\t\n\x05Exist\x10\x01\x12\x0c\n\x08NotExist\
-    \x10\x02B\x1e\n\x10org.tikv.kvproto\xe0\xe2\x1e\x01\xd0\xe2\x1e\x01\xc8\
-    \xe2\x1e\x01b\x06proto3\
+    \x12\x10\n\x03key\x18\x02\x20\x01(\x0cR\x03key\x12\x0e\n\x02cf\x18\x03\
+    \x20\x01(\tR\x02cf\"\\\n\x11RawDeleteResponse\x121\n\x0cregion_error\x18\
+    \x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\x14\n\x05error\
+    \x18\x02\x20\x01(\tR\x05error\"g\n\x15RawBatchDeleteRequest\x12*\n\x07co\
+    ntext\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12\x12\n\
+    \x04keys\x18\x02\x20\x03(\x0cR\x04keys\x12\x0e\n\x02cf\x18\x03\x20\x01(\
+    \tR\x02cf\"a\n\x16RawBatchDeleteResponse\x121\n\x0cregion_error\x18\x01\
+    \x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\x14\n\x05error\x18\
+    \x02\x20\x01(\tR\x05error\"v\n\x12DeleteRangeRequest\x12*\n\x07context\
+    \x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12\x1b\n\tstart_\
+    key\x18\x02\x20\x01(\x0cR\x08startKey\x12\x17\n\x07end_key\x18\x03\x20\
+    \x01(\x0cR\x06endKey\"^\n\x13DeleteRangeResponse\x121\n\x0cregion_error\
+    \x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\x14\n\x05er\
+    ror\x18\x02\x20\x01(\tR\x05error\"\x89\x01\n\x15RawDeleteRangeRequest\
+    \x12*\n\x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\
+    \x12\x1b\n\tstart_key\x18\x02\x20\x01(\x0cR\x08startKey\x12\x17\n\x07end\
+    _key\x18\x03\x20\x01(\x0cR\x06endKey\x12\x0e\n\x02cf\x18\x04\x20\x01(\tR\
+    \x02cf\"a\n\x16RawDeleteRangeResponse\x121\n\x0cregion_error\x18\x01\x20\
+    \x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\x14\n\x05error\x18\x02\
+    \x20\x01(\tR\x05error\"\xcd\x01\n\x0eRawScanRequest\x12*\n\x07context\
+    \x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12\x1b\n\tstart_\
+    key\x18\x02\x20\x01(\x0cR\x08startKey\x12\x14\n\x05limit\x18\x03\x20\x01\
+    (\rR\x05limit\x12\x19\n\x08key_only\x18\x04\x20\x01(\x08R\x07keyOnly\x12\
+    \x0e\n\x02cf\x18\x05\x20\x01(\tR\x02cf\x12\x18\n\x07reverse\x18\x06\x20\
+    \x01(\x08R\x07reverse\x12\x17\n\x07end_key\x18\x07\x20\x01(\x0cR\x06endK\
+    ey\"g\n\x0fRawScanResponse\x121\n\x0cregion_error\x18\x01\x20\x01(\x0b2\
+    \x0e.errorpb.ErrorR\x0bregionError\x12!\n\x03kvs\x18\x02\x20\x03(\x0b2\
+    \x0f.kvrpcpb.KvPairR\x03kvs\"@\n\x08KeyRange\x12\x1b\n\tstart_key\x18\
+    \x01\x20\x01(\x0cR\x08startKey\x12\x17\n\x07end_key\x18\x02\x20\x01(\x0c\
+    R\x06endKey\"\xd0\x01\n\x13RawBatchScanRequest\x12*\n\x07context\x18\x01\
+    \x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12)\n\x06ranges\x18\x02\
+    \x20\x03(\x0b2\x11.kvrpcpb.KeyRangeR\x06ranges\x12\x1d\n\neach_limit\x18\
+    \x03\x20\x01(\rR\teachLimit\x12\x19\n\x08key_only\x18\x04\x20\x01(\x08R\
+    \x07keyOnly\x12\x0e\n\x02cf\x18\x05\x20\x01(\tR\x02cf\x12\x18\n\x07rever\
+    se\x18\x06\x20\x01(\x08R\x07reverse\"l\n\x14RawBatchScanResponse\x121\n\
+    \x0cregion_error\x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\
+    \x12!\n\x03kvs\x18\x02\x20\x03(\x0b2\x0f.kvrpcpb.KvPairR\x03kvs\"\x85\
+    \x01\n\tMvccWrite\x12\x1f\n\x04type\x18\x01\x20\x01(\x0e2\x0b.kvrpcpb.Op\
+    R\x04type\x12\x19\n\x08start_ts\x18\x02\x20\x01(\x04R\x07startTs\x12\x1b\
+    \n\tcommit_ts\x18\x03\x20\x01(\x04R\x08commitTs\x12\x1f\n\x0bshort_value\
+    \x18\x04\x20\x01(\x0cR\nshortValue\"<\n\tMvccValue\x12\x19\n\x08start_ts\
+    \x18\x01\x20\x01(\x04R\x07startTs\x12\x14\n\x05value\x18\x02\x20\x01(\
+    \x0cR\x05value\"\x81\x01\n\x08MvccLock\x12\x1f\n\x04type\x18\x01\x20\x01\
+    (\x0e2\x0b.kvrpcpb.OpR\x04type\x12\x19\n\x08start_ts\x18\x02\x20\x01(\
+    \x04R\x07startTs\x12\x18\n\x07primary\x18\x03\x20\x01(\x0cR\x07primary\
+    \x12\x1f\n\x0bshort_value\x18\x04\x20\x01(\x0cR\nshortValue\"\x89\x01\n\
+    \x08MvccInfo\x12%\n\x04lock\x18\x01\x20\x01(\x0b2\x11.kvrpcpb.MvccLockR\
+    \x04lock\x12*\n\x06writes\x18\x02\x20\x03(\x0b2\x12.kvrpcpb.MvccWriteR\
+    \x06writes\x12*\n\x06values\x18\x03\x20\x03(\x0b2\x12.kvrpcpb.MvccValueR\
+    \x06values\"S\n\x13MvccGetByKeyRequest\x12*\n\x07context\x18\x01\x20\x01\
+    (\x0b2\x10.kvrpcpb.ContextR\x07context\x12\x10\n\x03key\x18\x02\x20\x01(\
+    \x0cR\x03key\"\x86\x01\n\x14MvccGetByKeyResponse\x121\n\x0cregion_error\
+    \x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\x14\n\x05er\
+    ror\x18\x02\x20\x01(\tR\x05error\x12%\n\x04info\x18\x03\x20\x01(\x0b2\
+    \x11.kvrpcpb.MvccInfoR\x04info\"`\n\x17MvccGetByStartTsRequest\x12*\n\
+    \x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12\
+    \x19\n\x08start_ts\x18\x02\x20\x01(\x04R\x07startTs\"\x9c\x01\n\x18MvccG\
+    etByStartTsResponse\x121\n\x0cregion_error\x18\x01\x20\x01(\x0b2\x0e.err\
+    orpb.ErrorR\x0bregionError\x12\x14\n\x05error\x18\x02\x20\x01(\tR\x05err\
+    or\x12\x10\n\x03key\x18\x03\x20\x01(\x0cR\x03key\x12%\n\x04info\x18\x04\
+    \x20\x01(\x0b2\x11.kvrpcpb.MvccInfoR\x04info\"]\n\x12SplitRegionRequest\
+    \x12*\n\x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\
+    \x12\x1b\n\tsplit_key\x18\x02\x20\x01(\x0cR\x08splitKey\"\x92\x01\n\x13S\
+    plitRegionResponse\x121\n\x0cregion_error\x18\x01\x20\x01(\x0b2\x0e.erro\
+    rpb.ErrorR\x0bregionError\x12\"\n\x04left\x18\x02\x20\x01(\x0b2\x0e.meta\
+    pb.RegionR\x04left\x12$\n\x05right\x18\x03\x20\x01(\x0b2\x0e.metapb.Regi\
+    onR\x05right\"}\n\x19UnsafeDestroyRangeRequest\x12*\n\x07context\x18\x01\
+    \x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\x12\x1b\n\tstart_key\x18\
+    \x02\x20\x01(\x0cR\x08startKey\x12\x17\n\x07end_key\x18\x03\x20\x01(\x0c\
+    R\x06endKey\"e\n\x1aUnsafeDestroyRangeResponse\x121\n\x0cregion_error\
+    \x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\x14\n\x05er\
+    ror\x18\x02\x20\x01(\tR\x05error*+\n\nCommandPri\x12\n\n\x06Normal\x10\0\
+    \x12\x07\n\x03Low\x10\x01\x12\x08\n\x04High\x10\x02*\x20\n\x0eIsolationL\
+    evel\x12\x06\n\x02SI\x10\0\x12\x06\n\x02RC\x10\x01*:\n\x02Op\x12\x07\n\
+    \x03Put\x10\0\x12\x07\n\x03Del\x10\x01\x12\x08\n\x04Lock\x10\x02\x12\x0c\
+    \n\x08Rollback\x10\x03\x12\n\n\x06Insert\x10\x04*.\n\tAssertion\x12\x08\
+    \n\x04None\x10\0\x12\t\n\x05Exist\x10\x01\x12\x0c\n\x08NotExist\x10\x02B\
+    \x1e\n\x10org.tikv.kvproto\xd0\xe2\x1e\x01\xe0\xe2\x1e\x01\xc8\xe2\x1e\
+    \x01b\x06proto3\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

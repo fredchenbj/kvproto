@@ -757,6 +757,373 @@ impl ::protobuf::reflect::ProtobufValue for PutResponse {
 }
 
 #[derive(PartialEq,Clone,Default)]
+pub struct UpdateRequest {
+    // message fields
+    pub cf: ::std::string::String,
+    pub key: ::std::vec::Vec<u8>,
+    pub value: ::std::vec::Vec<u8>,
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+impl UpdateRequest {
+    pub fn new() -> UpdateRequest {
+        ::std::default::Default::default()
+    }
+
+    // string cf = 1;
+
+    pub fn clear_cf(&mut self) {
+        self.cf.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_cf(&mut self, v: ::std::string::String) {
+        self.cf = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_cf(&mut self) -> &mut ::std::string::String {
+        &mut self.cf
+    }
+
+    // Take field
+    pub fn take_cf(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.cf, ::std::string::String::new())
+    }
+
+    pub fn get_cf(&self) -> &str {
+        &self.cf
+    }
+
+    // bytes key = 2;
+
+    pub fn clear_key(&mut self) {
+        self.key.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_key(&mut self, v: ::std::vec::Vec<u8>) {
+        self.key = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_key(&mut self) -> &mut ::std::vec::Vec<u8> {
+        &mut self.key
+    }
+
+    // Take field
+    pub fn take_key(&mut self) -> ::std::vec::Vec<u8> {
+        ::std::mem::replace(&mut self.key, ::std::vec::Vec::new())
+    }
+
+    pub fn get_key(&self) -> &[u8] {
+        &self.key
+    }
+
+    // bytes value = 3;
+
+    pub fn clear_value(&mut self) {
+        self.value.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_value(&mut self, v: ::std::vec::Vec<u8>) {
+        self.value = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_value(&mut self) -> &mut ::std::vec::Vec<u8> {
+        &mut self.value
+    }
+
+    // Take field
+    pub fn take_value(&mut self) -> ::std::vec::Vec<u8> {
+        ::std::mem::replace(&mut self.value, ::std::vec::Vec::new())
+    }
+
+    pub fn get_value(&self) -> &[u8] {
+        &self.value
+    }
+}
+
+impl ::protobuf::Message for UpdateRequest {
+    fn is_initialized(&self) -> bool {
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.cf)?;
+                },
+                2 => {
+                    ::protobuf::rt::read_singular_proto3_bytes_into(wire_type, is, &mut self.key)?;
+                },
+                3 => {
+                    ::protobuf::rt::read_singular_proto3_bytes_into(wire_type, is, &mut self.value)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if !self.cf.is_empty() {
+            my_size += ::protobuf::rt::string_size(1, &self.cf);
+        }
+        if !self.key.is_empty() {
+            my_size += ::protobuf::rt::bytes_size(2, &self.key);
+        }
+        if !self.value.is_empty() {
+            my_size += ::protobuf::rt::bytes_size(3, &self.value);
+        }
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        if !self.cf.is_empty() {
+            os.write_string(1, &self.cf)?;
+        }
+        if !self.key.is_empty() {
+            os.write_bytes(2, &self.key)?;
+        }
+        if !self.value.is_empty() {
+            os.write_bytes(3, &self.value)?;
+        }
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> UpdateRequest {
+        UpdateRequest::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "cf",
+                    |m: &UpdateRequest| { &m.cf },
+                    |m: &mut UpdateRequest| { &mut m.cf },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBytes>(
+                    "key",
+                    |m: &UpdateRequest| { &m.key },
+                    |m: &mut UpdateRequest| { &mut m.key },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBytes>(
+                    "value",
+                    |m: &UpdateRequest| { &m.value },
+                    |m: &mut UpdateRequest| { &mut m.value },
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<UpdateRequest>(
+                    "UpdateRequest",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static UpdateRequest {
+        static mut instance: ::protobuf::lazy::Lazy<UpdateRequest> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const UpdateRequest,
+        };
+        unsafe {
+            instance.get(UpdateRequest::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for UpdateRequest {
+    fn clear(&mut self) {
+        self.clear_cf();
+        self.clear_key();
+        self.clear_value();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for UpdateRequest {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for UpdateRequest {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
+pub struct UpdateResponse {
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+impl UpdateResponse {
+    pub fn new() -> UpdateResponse {
+        ::std::default::Default::default()
+    }
+}
+
+impl ::protobuf::Message for UpdateResponse {
+    fn is_initialized(&self) -> bool {
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> UpdateResponse {
+        UpdateResponse::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let fields = ::std::vec::Vec::new();
+                ::protobuf::reflect::MessageDescriptor::new::<UpdateResponse>(
+                    "UpdateResponse",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static UpdateResponse {
+        static mut instance: ::protobuf::lazy::Lazy<UpdateResponse> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const UpdateResponse,
+        };
+        unsafe {
+            instance.get(UpdateResponse::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for UpdateResponse {
+    fn clear(&mut self) {
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for UpdateResponse {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for UpdateResponse {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
 pub struct DeleteRequest {
     // message fields
     pub cf: ::std::string::String,
@@ -2422,6 +2789,7 @@ pub struct Request {
     pub prewrite: ::protobuf::SingularPtrField<PrewriteRequest>,
     pub delete_range: ::protobuf::SingularPtrField<DeleteRangeRequest>,
     pub ingest_sst: ::protobuf::SingularPtrField<IngestSSTRequest>,
+    pub update: ::protobuf::SingularPtrField<UpdateRequest>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -2677,6 +3045,39 @@ impl Request {
     pub fn get_ingest_sst(&self) -> &IngestSSTRequest {
         self.ingest_sst.as_ref().unwrap_or_else(|| IngestSSTRequest::default_instance())
     }
+
+    // .raft_cmdpb.UpdateRequest update = 100;
+
+    pub fn clear_update(&mut self) {
+        self.update.clear();
+    }
+
+    pub fn has_update(&self) -> bool {
+        self.update.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_update(&mut self, v: UpdateRequest) {
+        self.update = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_update(&mut self) -> &mut UpdateRequest {
+        if self.update.is_none() {
+            self.update.set_default();
+        }
+        self.update.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_update(&mut self) -> UpdateRequest {
+        self.update.take().unwrap_or_else(|| UpdateRequest::new())
+    }
+
+    pub fn get_update(&self) -> &UpdateRequest {
+        self.update.as_ref().unwrap_or_else(|| UpdateRequest::default_instance())
+    }
 }
 
 impl ::protobuf::Message for Request {
@@ -2716,6 +3117,11 @@ impl ::protobuf::Message for Request {
                 return false;
             }
         };
+        for v in &self.update {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
         true
     }
 
@@ -2746,6 +3152,9 @@ impl ::protobuf::Message for Request {
                 },
                 9 => {
                     ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.ingest_sst)?;
+                },
+                100 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.update)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -2790,6 +3199,10 @@ impl ::protobuf::Message for Request {
             let len = v.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         }
+        if let Some(ref v) = self.update.as_ref() {
+            let len = v.compute_size();
+            my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
         my_size
@@ -2831,6 +3244,11 @@ impl ::protobuf::Message for Request {
         }
         if let Some(ref v) = self.ingest_sst.as_ref() {
             os.write_tag(9, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        if let Some(ref v) = self.update.as_ref() {
+            os.write_tag(100, ::protobuf::wire_format::WireTypeLengthDelimited)?;
             os.write_raw_varint32(v.get_cached_size())?;
             v.write_to_with_cached_sizes(os)?;
         }
@@ -2916,6 +3334,11 @@ impl ::protobuf::Message for Request {
                     |m: &Request| { &m.ingest_sst },
                     |m: &mut Request| { &mut m.ingest_sst },
                 ));
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<UpdateRequest>>(
+                    "update",
+                    |m: &Request| { &m.update },
+                    |m: &mut Request| { &mut m.update },
+                ));
                 ::protobuf::reflect::MessageDescriptor::new::<Request>(
                     "Request",
                     fields,
@@ -2946,6 +3369,7 @@ impl ::protobuf::Clear for Request {
         self.clear_prewrite();
         self.clear_delete_range();
         self.clear_ingest_sst();
+        self.clear_update();
         self.unknown_fields.clear();
     }
 }
@@ -2973,6 +3397,7 @@ pub struct Response {
     pub prewrite: ::protobuf::SingularPtrField<PrewriteResponse>,
     pub delte_range: ::protobuf::SingularPtrField<DeleteRangeResponse>,
     pub ingest_sst: ::protobuf::SingularPtrField<IngestSSTResponse>,
+    pub update: ::protobuf::SingularPtrField<UpdateResponse>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -3228,6 +3653,39 @@ impl Response {
     pub fn get_ingest_sst(&self) -> &IngestSSTResponse {
         self.ingest_sst.as_ref().unwrap_or_else(|| IngestSSTResponse::default_instance())
     }
+
+    // .raft_cmdpb.UpdateResponse update = 100;
+
+    pub fn clear_update(&mut self) {
+        self.update.clear();
+    }
+
+    pub fn has_update(&self) -> bool {
+        self.update.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_update(&mut self, v: UpdateResponse) {
+        self.update = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_update(&mut self) -> &mut UpdateResponse {
+        if self.update.is_none() {
+            self.update.set_default();
+        }
+        self.update.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_update(&mut self) -> UpdateResponse {
+        self.update.take().unwrap_or_else(|| UpdateResponse::new())
+    }
+
+    pub fn get_update(&self) -> &UpdateResponse {
+        self.update.as_ref().unwrap_or_else(|| UpdateResponse::default_instance())
+    }
 }
 
 impl ::protobuf::Message for Response {
@@ -3267,6 +3725,11 @@ impl ::protobuf::Message for Response {
                 return false;
             }
         };
+        for v in &self.update {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
         true
     }
 
@@ -3297,6 +3760,9 @@ impl ::protobuf::Message for Response {
                 },
                 9 => {
                     ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.ingest_sst)?;
+                },
+                100 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.update)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -3341,6 +3807,10 @@ impl ::protobuf::Message for Response {
             let len = v.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         }
+        if let Some(ref v) = self.update.as_ref() {
+            let len = v.compute_size();
+            my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
         my_size
@@ -3382,6 +3852,11 @@ impl ::protobuf::Message for Response {
         }
         if let Some(ref v) = self.ingest_sst.as_ref() {
             os.write_tag(9, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        if let Some(ref v) = self.update.as_ref() {
+            os.write_tag(100, ::protobuf::wire_format::WireTypeLengthDelimited)?;
             os.write_raw_varint32(v.get_cached_size())?;
             v.write_to_with_cached_sizes(os)?;
         }
@@ -3467,6 +3942,11 @@ impl ::protobuf::Message for Response {
                     |m: &Response| { &m.ingest_sst },
                     |m: &mut Response| { &mut m.ingest_sst },
                 ));
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<UpdateResponse>>(
+                    "update",
+                    |m: &Response| { &m.update },
+                    |m: &mut Response| { &mut m.update },
+                ));
                 ::protobuf::reflect::MessageDescriptor::new::<Response>(
                     "Response",
                     fields,
@@ -3497,6 +3977,7 @@ impl ::protobuf::Clear for Response {
         self.clear_prewrite();
         self.clear_delte_range();
         self.clear_ingest_sst();
+        self.clear_update();
         self.unknown_fields.clear();
     }
 }
@@ -10581,6 +11062,7 @@ pub enum CmdType {
     Prewrite = 6,
     DeleteRange = 7,
     IngestSST = 8,
+    Update = 100,
 }
 
 impl ::protobuf::ProtobufEnum for CmdType {
@@ -10598,6 +11080,7 @@ impl ::protobuf::ProtobufEnum for CmdType {
             6 => ::std::option::Option::Some(CmdType::Prewrite),
             7 => ::std::option::Option::Some(CmdType::DeleteRange),
             8 => ::std::option::Option::Some(CmdType::IngestSST),
+            100 => ::std::option::Option::Some(CmdType::Update),
             _ => ::std::option::Option::None
         }
     }
@@ -10612,6 +11095,7 @@ impl ::protobuf::ProtobufEnum for CmdType {
             CmdType::Prewrite,
             CmdType::DeleteRange,
             CmdType::IngestSST,
+            CmdType::Update,
         ];
         values
     }
@@ -10791,134 +11275,139 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x0cR\x03key\"#\n\x0bGetResponse\x12\x14\n\x05value\x18\x01\x20\x01(\x0c\
     R\x05value\"D\n\nPutRequest\x12\x0e\n\x02cf\x18\x01\x20\x01(\tR\x02cf\
     \x12\x10\n\x03key\x18\x02\x20\x01(\x0cR\x03key\x12\x14\n\x05value\x18\
-    \x03\x20\x01(\x0cR\x05value\"\r\n\x0bPutResponse\"1\n\rDeleteRequest\x12\
+    \x03\x20\x01(\x0cR\x05value\"\r\n\x0bPutResponse\"G\n\rUpdateRequest\x12\
     \x0e\n\x02cf\x18\x01\x20\x01(\tR\x02cf\x12\x10\n\x03key\x18\x02\x20\x01(\
-    \x0cR\x03key\"\x10\n\x0eDeleteResponse\"Z\n\x12DeleteRangeRequest\x12\
-    \x0e\n\x02cf\x18\x01\x20\x01(\tR\x02cf\x12\x1b\n\tstart_key\x18\x02\x20\
-    \x01(\x0cR\x08startKey\x12\x17\n\x07end_key\x18\x03\x20\x01(\x0cR\x06end\
-    Key\"\x15\n\x13DeleteRangeResponse\"\r\n\x0bSnapRequest\"6\n\x0cSnapResp\
-    onse\x12&\n\x06region\x18\x01\x20\x01(\x0b2\x0e.metapb.RegionR\x06region\
-    \"M\n\x0fPrewriteRequest\x12\x10\n\x03key\x18\x01\x20\x01(\x0cR\x03key\
-    \x12\x14\n\x05value\x18\x02\x20\x01(\x0cR\x05value\x12\x12\n\x04lock\x18\
-    \x03\x20\x01(\x0cR\x04lock\"\x12\n\x10PrewriteResponse\";\n\x10IngestSST\
-    Request\x12'\n\x03sst\x18\x01\x20\x01(\x0b2\x15.import_sstpb.SSTMetaR\
-    \x03sst\"\x13\n\x11IngestSSTResponse\"\xa6\x03\n\x07Request\x12.\n\x08cm\
-    d_type\x18\x01\x20\x01(\x0e2\x13.raft_cmdpb.CmdTypeR\x07cmdType\x12(\n\
-    \x03get\x18\x02\x20\x01(\x0b2\x16.raft_cmdpb.GetRequestR\x03get\x12(\n\
-    \x03put\x18\x04\x20\x01(\x0b2\x16.raft_cmdpb.PutRequestR\x03put\x121\n\
-    \x06delete\x18\x05\x20\x01(\x0b2\x19.raft_cmdpb.DeleteRequestR\x06delete\
-    \x12+\n\x04snap\x18\x06\x20\x01(\x0b2\x17.raft_cmdpb.SnapRequestR\x04sna\
-    p\x127\n\x08prewrite\x18\x07\x20\x01(\x0b2\x1b.raft_cmdpb.PrewriteReques\
-    tR\x08prewrite\x12A\n\x0cdelete_range\x18\x08\x20\x01(\x0b2\x1e.raft_cmd\
-    pb.DeleteRangeRequestR\x0bdeleteRange\x12;\n\ningest_sst\x18\t\x20\x01(\
-    \x0b2\x1c.raft_cmdpb.IngestSSTRequestR\tingestSst\"\xac\x03\n\x08Respons\
-    e\x12.\n\x08cmd_type\x18\x01\x20\x01(\x0e2\x13.raft_cmdpb.CmdTypeR\x07cm\
-    dType\x12)\n\x03get\x18\x02\x20\x01(\x0b2\x17.raft_cmdpb.GetResponseR\
-    \x03get\x12)\n\x03put\x18\x04\x20\x01(\x0b2\x17.raft_cmdpb.PutResponseR\
-    \x03put\x122\n\x06delete\x18\x05\x20\x01(\x0b2\x1a.raft_cmdpb.DeleteResp\
-    onseR\x06delete\x12,\n\x04snap\x18\x06\x20\x01(\x0b2\x18.raft_cmdpb.Snap\
-    ResponseR\x04snap\x128\n\x08prewrite\x18\x07\x20\x01(\x0b2\x1c.raft_cmdp\
-    b.PrewriteResponseR\x08prewrite\x12@\n\x0bdelte_range\x18\x08\x20\x01(\
-    \x0b2\x1f.raft_cmdpb.DeleteRangeResponseR\ndelteRange\x12<\n\ningest_sst\
-    \x18\t\x20\x01(\x0b2\x1d.raft_cmdpb.IngestSSTResponseR\tingestSst\"o\n\
-    \x11ChangePeerRequest\x128\n\x0bchange_type\x18\x01\x20\x01(\x0e2\x17.er\
-    aftpb.ConfChangeTypeR\nchangeType\x12\x20\n\x04peer\x18\x02\x20\x01(\x0b\
-    2\x0c.metapb.PeerR\x04peer\"<\n\x12ChangePeerResponse\x12&\n\x06region\
-    \x18\x01\x20\x01(\x0b2\x0e.metapb.RegionR\x06region\"\x98\x01\n\x0cSplit\
-    Request\x12\x1b\n\tsplit_key\x18\x01\x20\x01(\x0cR\x08splitKey\x12\"\n\r\
-    new_region_id\x18\x02\x20\x01(\x04R\x0bnewRegionId\x12\x20\n\x0cnew_peer\
-    _ids\x18\x03\x20\x03(\x04R\nnewPeerIds\x12%\n\x0cright_derive\x18\x04\
-    \x20\x01(\x08R\x0brightDeriveB\x02\x18\x01\"Y\n\rSplitResponse\x12\"\n\
-    \x04left\x18\x01\x20\x01(\x0b2\x0e.metapb.RegionR\x04left\x12$\n\x05righ\
-    t\x18\x02\x20\x01(\x0b2\x0e.metapb.RegionR\x05right\"l\n\x11BatchSplitRe\
-    quest\x124\n\x08requests\x18\x01\x20\x03(\x0b2\x18.raft_cmdpb.SplitReque\
-    stR\x08requests\x12!\n\x0cright_derive\x18\x02\x20\x01(\x08R\x0brightDer\
-    ive\">\n\x12BatchSplitResponse\x12(\n\x07regions\x18\x01\x20\x03(\x0b2\
-    \x0e.metapb.RegionR\x07regions\"[\n\x11CompactLogRequest\x12#\n\rcompact\
-    _index\x18\x01\x20\x01(\x04R\x0ccompactIndex\x12!\n\x0ccompact_term\x18\
-    \x02\x20\x01(\x04R\x0bcompactTerm\"\x14\n\x12CompactLogResponse\"9\n\x15\
-    TransferLeaderRequest\x12\x20\n\x04peer\x18\x01\x20\x01(\x0b2\x0c.metapb\
-    .PeerR\x04peer\"\x18\n\x16TransferLeaderResponse\"=\n\x11VerifyHashReque\
-    st\x12\x14\n\x05index\x18\x01\x20\x01(\x04R\x05index\x12\x12\n\x04hash\
-    \x18\x02\x20\x01(\x0cR\x04hash\"\x14\n\x12VerifyHashResponse\"Z\n\x13Pre\
-    pareMergeRequest\x12\x1b\n\tmin_index\x18\x01\x20\x01(\x04R\x08minIndex\
-    \x12&\n\x06target\x18\x02\x20\x01(\x0b2\x0e.metapb.RegionR\x06target\"\
-    \x16\n\x14PrepareMergeResponse\"~\n\x12CommitMergeRequest\x12&\n\x06sour\
-    ce\x18\x01\x20\x01(\x0b2\x0e.metapb.RegionR\x06source\x12\x16\n\x06commi\
-    t\x18\x02\x20\x01(\x04R\x06commit\x12(\n\x07entries\x18\x03\x20\x03(\x0b\
-    2\x0e.eraftpb.EntryR\x07entries\"\x15\n\x13CommitMergeResponse\".\n\x14R\
-    ollbackMergeRequest\x12\x16\n\x06commit\x18\x01\x20\x01(\x04R\x06commit\
-    \"\x17\n\x15RollbackMergeResponse\"\x8c\x05\n\x0cAdminRequest\x123\n\x08\
-    cmd_type\x18\x01\x20\x01(\x0e2\x18.raft_cmdpb.AdminCmdTypeR\x07cmdType\
-    \x12>\n\x0bchange_peer\x18\x02\x20\x01(\x0b2\x1d.raft_cmdpb.ChangePeerRe\
-    questR\nchangePeer\x122\n\x05split\x18\x03\x20\x01(\x0b2\x18.raft_cmdpb.\
-    SplitRequestR\x05splitB\x02\x18\x01\x12>\n\x0bcompact_log\x18\x04\x20\
-    \x01(\x0b2\x1d.raft_cmdpb.CompactLogRequestR\ncompactLog\x12J\n\x0ftrans\
-    fer_leader\x18\x05\x20\x01(\x0b2!.raft_cmdpb.TransferLeaderRequestR\x0et\
-    ransferLeader\x12>\n\x0bverify_hash\x18\x06\x20\x01(\x0b2\x1d.raft_cmdpb\
-    .VerifyHashRequestR\nverifyHash\x12D\n\rprepare_merge\x18\x07\x20\x01(\
-    \x0b2\x1f.raft_cmdpb.PrepareMergeRequestR\x0cprepareMerge\x12A\n\x0ccomm\
-    it_merge\x18\x08\x20\x01(\x0b2\x1e.raft_cmdpb.CommitMergeRequestR\x0bcom\
-    mitMerge\x12G\n\x0erollback_merge\x18\t\x20\x01(\x0b2\x20.raft_cmdpb.Rol\
-    lbackMergeRequestR\rrollbackMerge\x125\n\x06splits\x18\n\x20\x01(\x0b2\
-    \x1d.raft_cmdpb.BatchSplitRequestR\x06splits\"\x96\x05\n\rAdminResponse\
-    \x123\n\x08cmd_type\x18\x01\x20\x01(\x0e2\x18.raft_cmdpb.AdminCmdTypeR\
-    \x07cmdType\x12?\n\x0bchange_peer\x18\x02\x20\x01(\x0b2\x1e.raft_cmdpb.C\
-    hangePeerResponseR\nchangePeer\x123\n\x05split\x18\x03\x20\x01(\x0b2\x19\
-    .raft_cmdpb.SplitResponseR\x05splitB\x02\x18\x01\x12?\n\x0bcompact_log\
-    \x18\x04\x20\x01(\x0b2\x1e.raft_cmdpb.CompactLogResponseR\ncompactLog\
-    \x12K\n\x0ftransfer_leader\x18\x05\x20\x01(\x0b2\".raft_cmdpb.TransferLe\
-    aderResponseR\x0etransferLeader\x12?\n\x0bverify_hash\x18\x06\x20\x01(\
-    \x0b2\x1e.raft_cmdpb.VerifyHashResponseR\nverifyHash\x12E\n\rprepare_mer\
-    ge\x18\x07\x20\x01(\x0b2\x20.raft_cmdpb.PrepareMergeResponseR\x0cprepare\
-    Merge\x12B\n\x0ccommit_merge\x18\x08\x20\x01(\x0b2\x1f.raft_cmdpb.Commit\
-    MergeResponseR\x0bcommitMerge\x12H\n\x0erollback_merge\x18\t\x20\x01(\
-    \x0b2!.raft_cmdpb.RollbackMergeResponseR\rrollbackMerge\x126\n\x06splits\
-    \x18\n\x20\x01(\x0b2\x1e.raft_cmdpb.BatchSplitResponseR\x06splits\"\x15\
-    \n\x13RegionLeaderRequest\"<\n\x14RegionLeaderResponse\x12$\n\x06leader\
-    \x18\x01\x20\x01(\x0b2\x0c.metapb.PeerR\x06leader\"\x15\n\x13RegionDetai\
-    lRequest\"d\n\x14RegionDetailResponse\x12&\n\x06region\x18\x01\x20\x01(\
-    \x0b2\x0e.metapb.RegionR\x06region\x12$\n\x06leader\x18\x02\x20\x01(\x0b\
-    2\x0c.metapb.PeerR\x06leader\"\xd1\x01\n\rStatusRequest\x124\n\x08cmd_ty\
-    pe\x18\x01\x20\x01(\x0e2\x19.raft_cmdpb.StatusCmdTypeR\x07cmdType\x12D\n\
-    \rregion_leader\x18\x02\x20\x01(\x0b2\x1f.raft_cmdpb.RegionLeaderRequest\
-    R\x0cregionLeader\x12D\n\rregion_detail\x18\x03\x20\x01(\x0b2\x1f.raft_c\
-    mdpb.RegionDetailRequestR\x0cregionDetail\"\xd4\x01\n\x0eStatusResponse\
-    \x124\n\x08cmd_type\x18\x01\x20\x01(\x0e2\x19.raft_cmdpb.StatusCmdTypeR\
-    \x07cmdType\x12E\n\rregion_leader\x18\x02\x20\x01(\x0b2\x20.raft_cmdpb.R\
-    egionLeaderResponseR\x0cregionLeader\x12E\n\rregion_detail\x18\x03\x20\
-    \x01(\x0b2\x20.raft_cmdpb.RegionDetailResponseR\x0cregionDetail\"\xee\
-    \x01\n\x11RaftRequestHeader\x12\x1b\n\tregion_id\x18\x01\x20\x01(\x04R\
-    \x08regionId\x12\x20\n\x04peer\x18\x02\x20\x01(\x0b2\x0c.metapb.PeerR\
-    \x04peer\x12\x1f\n\x0bread_quorum\x18\x03\x20\x01(\x08R\nreadQuorum\x12\
-    \x12\n\x04uuid\x18\x04\x20\x01(\x0cR\x04uuid\x126\n\x0cregion_epoch\x18\
-    \x05\x20\x01(\x0b2\x13.metapb.RegionEpochR\x0bregionEpoch\x12\x12\n\x04t\
-    erm\x18\x06\x20\x01(\x04R\x04term\x12\x19\n\x08sync_log\x18\x07\x20\x01(\
-    \x08R\x07syncLog\"q\n\x12RaftResponseHeader\x12$\n\x05error\x18\x01\x20\
-    \x01(\x0b2\x0e.errorpb.ErrorR\x05error\x12\x12\n\x04uuid\x18\x02\x20\x01\
-    (\x0cR\x04uuid\x12!\n\x0ccurrent_term\x18\x03\x20\x01(\x04R\x0bcurrentTe\
-    rm\"\xf9\x01\n\x0eRaftCmdRequest\x125\n\x06header\x18\x01\x20\x01(\x0b2\
-    \x1d.raft_cmdpb.RaftRequestHeaderR\x06header\x12/\n\x08requests\x18\x02\
-    \x20\x03(\x0b2\x13.raft_cmdpb.RequestR\x08requests\x12=\n\radmin_request\
-    \x18\x03\x20\x01(\x0b2\x18.raft_cmdpb.AdminRequestR\x0cadminRequest\x12@\
-    \n\x0estatus_request\x18\x04\x20\x01(\x0b2\x19.raft_cmdpb.StatusRequestR\
-    \rstatusRequest\"\x84\x02\n\x0fRaftCmdResponse\x126\n\x06header\x18\x01\
-    \x20\x01(\x0b2\x1e.raft_cmdpb.RaftResponseHeaderR\x06header\x122\n\tresp\
-    onses\x18\x02\x20\x03(\x0b2\x14.raft_cmdpb.ResponseR\tresponses\x12@\n\
-    \x0eadmin_response\x18\x03\x20\x01(\x0b2\x19.raft_cmdpb.AdminResponseR\r\
-    adminResponse\x12C\n\x0fstatus_response\x18\x04\x20\x01(\x0b2\x1a.raft_c\
-    mdpb.StatusResponseR\x0estatusResponse*l\n\x07CmdType\x12\x0b\n\x07Inval\
-    id\x10\0\x12\x07\n\x03Get\x10\x01\x12\x07\n\x03Put\x10\x03\x12\n\n\x06De\
-    lete\x10\x04\x12\x08\n\x04Snap\x10\x05\x12\x0c\n\x08Prewrite\x10\x06\x12\
-    \x0f\n\x0bDeleteRange\x10\x07\x12\r\n\tIngestSST\x10\x08*\xca\x01\n\x0cA\
-    dminCmdType\x12\x10\n\x0cInvalidAdmin\x10\0\x12\x0e\n\nChangePeer\x10\
-    \x01\x12\r\n\x05Split\x10\x02\x1a\x02\x08\x01\x12\x0e\n\nCompactLog\x10\
-    \x03\x12\x12\n\x0eTransferLeader\x10\x04\x12\x0f\n\x0bComputeHash\x10\
-    \x05\x12\x0e\n\nVerifyHash\x10\x06\x12\x10\n\x0cPrepareMerge\x10\x07\x12\
-    \x0f\n\x0bCommitMerge\x10\x08\x12\x11\n\rRollbackMerge\x10\t\x12\x0e\n\n\
-    BatchSplit\x10\n*F\n\rStatusCmdType\x12\x11\n\rInvalidStatus\x10\0\x12\
-    \x10\n\x0cRegionLeader\x10\x01\x12\x10\n\x0cRegionDetail\x10\x02B\x12\n\
-    \x10org.tikv.kvprotob\x06proto3\
+    \x0cR\x03key\x12\x14\n\x05value\x18\x03\x20\x01(\x0cR\x05value\"\x10\n\
+    \x0eUpdateResponse\"1\n\rDeleteRequest\x12\x0e\n\x02cf\x18\x01\x20\x01(\
+    \tR\x02cf\x12\x10\n\x03key\x18\x02\x20\x01(\x0cR\x03key\"\x10\n\x0eDelet\
+    eResponse\"Z\n\x12DeleteRangeRequest\x12\x0e\n\x02cf\x18\x01\x20\x01(\tR\
+    \x02cf\x12\x1b\n\tstart_key\x18\x02\x20\x01(\x0cR\x08startKey\x12\x17\n\
+    \x07end_key\x18\x03\x20\x01(\x0cR\x06endKey\"\x15\n\x13DeleteRangeRespon\
+    se\"\r\n\x0bSnapRequest\"6\n\x0cSnapResponse\x12&\n\x06region\x18\x01\
+    \x20\x01(\x0b2\x0e.metapb.RegionR\x06region\"M\n\x0fPrewriteRequest\x12\
+    \x10\n\x03key\x18\x01\x20\x01(\x0cR\x03key\x12\x14\n\x05value\x18\x02\
+    \x20\x01(\x0cR\x05value\x12\x12\n\x04lock\x18\x03\x20\x01(\x0cR\x04lock\
+    \"\x12\n\x10PrewriteResponse\";\n\x10IngestSSTRequest\x12'\n\x03sst\x18\
+    \x01\x20\x01(\x0b2\x15.import_sstpb.SSTMetaR\x03sst\"\x13\n\x11IngestSST\
+    Response\"\xd9\x03\n\x07Request\x12.\n\x08cmd_type\x18\x01\x20\x01(\x0e2\
+    \x13.raft_cmdpb.CmdTypeR\x07cmdType\x12(\n\x03get\x18\x02\x20\x01(\x0b2\
+    \x16.raft_cmdpb.GetRequestR\x03get\x12(\n\x03put\x18\x04\x20\x01(\x0b2\
+    \x16.raft_cmdpb.PutRequestR\x03put\x121\n\x06delete\x18\x05\x20\x01(\x0b\
+    2\x19.raft_cmdpb.DeleteRequestR\x06delete\x12+\n\x04snap\x18\x06\x20\x01\
+    (\x0b2\x17.raft_cmdpb.SnapRequestR\x04snap\x127\n\x08prewrite\x18\x07\
+    \x20\x01(\x0b2\x1b.raft_cmdpb.PrewriteRequestR\x08prewrite\x12A\n\x0cdel\
+    ete_range\x18\x08\x20\x01(\x0b2\x1e.raft_cmdpb.DeleteRangeRequestR\x0bde\
+    leteRange\x12;\n\ningest_sst\x18\t\x20\x01(\x0b2\x1c.raft_cmdpb.IngestSS\
+    TRequestR\tingestSst\x121\n\x06update\x18d\x20\x01(\x0b2\x19.raft_cmdpb.\
+    UpdateRequestR\x06update\"\xe0\x03\n\x08Response\x12.\n\x08cmd_type\x18\
+    \x01\x20\x01(\x0e2\x13.raft_cmdpb.CmdTypeR\x07cmdType\x12)\n\x03get\x18\
+    \x02\x20\x01(\x0b2\x17.raft_cmdpb.GetResponseR\x03get\x12)\n\x03put\x18\
+    \x04\x20\x01(\x0b2\x17.raft_cmdpb.PutResponseR\x03put\x122\n\x06delete\
+    \x18\x05\x20\x01(\x0b2\x1a.raft_cmdpb.DeleteResponseR\x06delete\x12,\n\
+    \x04snap\x18\x06\x20\x01(\x0b2\x18.raft_cmdpb.SnapResponseR\x04snap\x128\
+    \n\x08prewrite\x18\x07\x20\x01(\x0b2\x1c.raft_cmdpb.PrewriteResponseR\
+    \x08prewrite\x12@\n\x0bdelte_range\x18\x08\x20\x01(\x0b2\x1f.raft_cmdpb.\
+    DeleteRangeResponseR\ndelteRange\x12<\n\ningest_sst\x18\t\x20\x01(\x0b2\
+    \x1d.raft_cmdpb.IngestSSTResponseR\tingestSst\x122\n\x06update\x18d\x20\
+    \x01(\x0b2\x1a.raft_cmdpb.UpdateResponseR\x06update\"o\n\x11ChangePeerRe\
+    quest\x128\n\x0bchange_type\x18\x01\x20\x01(\x0e2\x17.eraftpb.ConfChange\
+    TypeR\nchangeType\x12\x20\n\x04peer\x18\x02\x20\x01(\x0b2\x0c.metapb.Pee\
+    rR\x04peer\"<\n\x12ChangePeerResponse\x12&\n\x06region\x18\x01\x20\x01(\
+    \x0b2\x0e.metapb.RegionR\x06region\"\x98\x01\n\x0cSplitRequest\x12\x1b\n\
+    \tsplit_key\x18\x01\x20\x01(\x0cR\x08splitKey\x12\"\n\rnew_region_id\x18\
+    \x02\x20\x01(\x04R\x0bnewRegionId\x12\x20\n\x0cnew_peer_ids\x18\x03\x20\
+    \x03(\x04R\nnewPeerIds\x12%\n\x0cright_derive\x18\x04\x20\x01(\x08R\x0br\
+    ightDeriveB\x02\x18\x01\"Y\n\rSplitResponse\x12\"\n\x04left\x18\x01\x20\
+    \x01(\x0b2\x0e.metapb.RegionR\x04left\x12$\n\x05right\x18\x02\x20\x01(\
+    \x0b2\x0e.metapb.RegionR\x05right\"l\n\x11BatchSplitRequest\x124\n\x08re\
+    quests\x18\x01\x20\x03(\x0b2\x18.raft_cmdpb.SplitRequestR\x08requests\
+    \x12!\n\x0cright_derive\x18\x02\x20\x01(\x08R\x0brightDerive\">\n\x12Bat\
+    chSplitResponse\x12(\n\x07regions\x18\x01\x20\x03(\x0b2\x0e.metapb.Regio\
+    nR\x07regions\"[\n\x11CompactLogRequest\x12#\n\rcompact_index\x18\x01\
+    \x20\x01(\x04R\x0ccompactIndex\x12!\n\x0ccompact_term\x18\x02\x20\x01(\
+    \x04R\x0bcompactTerm\"\x14\n\x12CompactLogResponse\"9\n\x15TransferLeade\
+    rRequest\x12\x20\n\x04peer\x18\x01\x20\x01(\x0b2\x0c.metapb.PeerR\x04pee\
+    r\"\x18\n\x16TransferLeaderResponse\"=\n\x11VerifyHashRequest\x12\x14\n\
+    \x05index\x18\x01\x20\x01(\x04R\x05index\x12\x12\n\x04hash\x18\x02\x20\
+    \x01(\x0cR\x04hash\"\x14\n\x12VerifyHashResponse\"Z\n\x13PrepareMergeReq\
+    uest\x12\x1b\n\tmin_index\x18\x01\x20\x01(\x04R\x08minIndex\x12&\n\x06ta\
+    rget\x18\x02\x20\x01(\x0b2\x0e.metapb.RegionR\x06target\"\x16\n\x14Prepa\
+    reMergeResponse\"~\n\x12CommitMergeRequest\x12&\n\x06source\x18\x01\x20\
+    \x01(\x0b2\x0e.metapb.RegionR\x06source\x12\x16\n\x06commit\x18\x02\x20\
+    \x01(\x04R\x06commit\x12(\n\x07entries\x18\x03\x20\x03(\x0b2\x0e.eraftpb\
+    .EntryR\x07entries\"\x15\n\x13CommitMergeResponse\".\n\x14RollbackMergeR\
+    equest\x12\x16\n\x06commit\x18\x01\x20\x01(\x04R\x06commit\"\x17\n\x15Ro\
+    llbackMergeResponse\"\x8c\x05\n\x0cAdminRequest\x123\n\x08cmd_type\x18\
+    \x01\x20\x01(\x0e2\x18.raft_cmdpb.AdminCmdTypeR\x07cmdType\x12>\n\x0bcha\
+    nge_peer\x18\x02\x20\x01(\x0b2\x1d.raft_cmdpb.ChangePeerRequestR\nchange\
+    Peer\x122\n\x05split\x18\x03\x20\x01(\x0b2\x18.raft_cmdpb.SplitRequestR\
+    \x05splitB\x02\x18\x01\x12>\n\x0bcompact_log\x18\x04\x20\x01(\x0b2\x1d.r\
+    aft_cmdpb.CompactLogRequestR\ncompactLog\x12J\n\x0ftransfer_leader\x18\
+    \x05\x20\x01(\x0b2!.raft_cmdpb.TransferLeaderRequestR\x0etransferLeader\
+    \x12>\n\x0bverify_hash\x18\x06\x20\x01(\x0b2\x1d.raft_cmdpb.VerifyHashRe\
+    questR\nverifyHash\x12D\n\rprepare_merge\x18\x07\x20\x01(\x0b2\x1f.raft_\
+    cmdpb.PrepareMergeRequestR\x0cprepareMerge\x12A\n\x0ccommit_merge\x18\
+    \x08\x20\x01(\x0b2\x1e.raft_cmdpb.CommitMergeRequestR\x0bcommitMerge\x12\
+    G\n\x0erollback_merge\x18\t\x20\x01(\x0b2\x20.raft_cmdpb.RollbackMergeRe\
+    questR\rrollbackMerge\x125\n\x06splits\x18\n\x20\x01(\x0b2\x1d.raft_cmdp\
+    b.BatchSplitRequestR\x06splits\"\x96\x05\n\rAdminResponse\x123\n\x08cmd_\
+    type\x18\x01\x20\x01(\x0e2\x18.raft_cmdpb.AdminCmdTypeR\x07cmdType\x12?\
+    \n\x0bchange_peer\x18\x02\x20\x01(\x0b2\x1e.raft_cmdpb.ChangePeerRespons\
+    eR\nchangePeer\x123\n\x05split\x18\x03\x20\x01(\x0b2\x19.raft_cmdpb.Spli\
+    tResponseR\x05splitB\x02\x18\x01\x12?\n\x0bcompact_log\x18\x04\x20\x01(\
+    \x0b2\x1e.raft_cmdpb.CompactLogResponseR\ncompactLog\x12K\n\x0ftransfer_\
+    leader\x18\x05\x20\x01(\x0b2\".raft_cmdpb.TransferLeaderResponseR\x0etra\
+    nsferLeader\x12?\n\x0bverify_hash\x18\x06\x20\x01(\x0b2\x1e.raft_cmdpb.V\
+    erifyHashResponseR\nverifyHash\x12E\n\rprepare_merge\x18\x07\x20\x01(\
+    \x0b2\x20.raft_cmdpb.PrepareMergeResponseR\x0cprepareMerge\x12B\n\x0ccom\
+    mit_merge\x18\x08\x20\x01(\x0b2\x1f.raft_cmdpb.CommitMergeResponseR\x0bc\
+    ommitMerge\x12H\n\x0erollback_merge\x18\t\x20\x01(\x0b2!.raft_cmdpb.Roll\
+    backMergeResponseR\rrollbackMerge\x126\n\x06splits\x18\n\x20\x01(\x0b2\
+    \x1e.raft_cmdpb.BatchSplitResponseR\x06splits\"\x15\n\x13RegionLeaderReq\
+    uest\"<\n\x14RegionLeaderResponse\x12$\n\x06leader\x18\x01\x20\x01(\x0b2\
+    \x0c.metapb.PeerR\x06leader\"\x15\n\x13RegionDetailRequest\"d\n\x14Regio\
+    nDetailResponse\x12&\n\x06region\x18\x01\x20\x01(\x0b2\x0e.metapb.Region\
+    R\x06region\x12$\n\x06leader\x18\x02\x20\x01(\x0b2\x0c.metapb.PeerR\x06l\
+    eader\"\xd1\x01\n\rStatusRequest\x124\n\x08cmd_type\x18\x01\x20\x01(\x0e\
+    2\x19.raft_cmdpb.StatusCmdTypeR\x07cmdType\x12D\n\rregion_leader\x18\x02\
+    \x20\x01(\x0b2\x1f.raft_cmdpb.RegionLeaderRequestR\x0cregionLeader\x12D\
+    \n\rregion_detail\x18\x03\x20\x01(\x0b2\x1f.raft_cmdpb.RegionDetailReque\
+    stR\x0cregionDetail\"\xd4\x01\n\x0eStatusResponse\x124\n\x08cmd_type\x18\
+    \x01\x20\x01(\x0e2\x19.raft_cmdpb.StatusCmdTypeR\x07cmdType\x12E\n\rregi\
+    on_leader\x18\x02\x20\x01(\x0b2\x20.raft_cmdpb.RegionLeaderResponseR\x0c\
+    regionLeader\x12E\n\rregion_detail\x18\x03\x20\x01(\x0b2\x20.raft_cmdpb.\
+    RegionDetailResponseR\x0cregionDetail\"\xee\x01\n\x11RaftRequestHeader\
+    \x12\x1b\n\tregion_id\x18\x01\x20\x01(\x04R\x08regionId\x12\x20\n\x04pee\
+    r\x18\x02\x20\x01(\x0b2\x0c.metapb.PeerR\x04peer\x12\x1f\n\x0bread_quoru\
+    m\x18\x03\x20\x01(\x08R\nreadQuorum\x12\x12\n\x04uuid\x18\x04\x20\x01(\
+    \x0cR\x04uuid\x126\n\x0cregion_epoch\x18\x05\x20\x01(\x0b2\x13.metapb.Re\
+    gionEpochR\x0bregionEpoch\x12\x12\n\x04term\x18\x06\x20\x01(\x04R\x04ter\
+    m\x12\x19\n\x08sync_log\x18\x07\x20\x01(\x08R\x07syncLog\"q\n\x12RaftRes\
+    ponseHeader\x12$\n\x05error\x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x05\
+    error\x12\x12\n\x04uuid\x18\x02\x20\x01(\x0cR\x04uuid\x12!\n\x0ccurrent_\
+    term\x18\x03\x20\x01(\x04R\x0bcurrentTerm\"\xf9\x01\n\x0eRaftCmdRequest\
+    \x125\n\x06header\x18\x01\x20\x01(\x0b2\x1d.raft_cmdpb.RaftRequestHeader\
+    R\x06header\x12/\n\x08requests\x18\x02\x20\x03(\x0b2\x13.raft_cmdpb.Requ\
+    estR\x08requests\x12=\n\radmin_request\x18\x03\x20\x01(\x0b2\x18.raft_cm\
+    dpb.AdminRequestR\x0cadminRequest\x12@\n\x0estatus_request\x18\x04\x20\
+    \x01(\x0b2\x19.raft_cmdpb.StatusRequestR\rstatusRequest\"\x84\x02\n\x0fR\
+    aftCmdResponse\x126\n\x06header\x18\x01\x20\x01(\x0b2\x1e.raft_cmdpb.Raf\
+    tResponseHeaderR\x06header\x122\n\tresponses\x18\x02\x20\x03(\x0b2\x14.r\
+    aft_cmdpb.ResponseR\tresponses\x12@\n\x0eadmin_response\x18\x03\x20\x01(\
+    \x0b2\x19.raft_cmdpb.AdminResponseR\radminResponse\x12C\n\x0fstatus_resp\
+    onse\x18\x04\x20\x01(\x0b2\x1a.raft_cmdpb.StatusResponseR\x0estatusRespo\
+    nse*x\n\x07CmdType\x12\x0b\n\x07Invalid\x10\0\x12\x07\n\x03Get\x10\x01\
+    \x12\x07\n\x03Put\x10\x03\x12\n\n\x06Delete\x10\x04\x12\x08\n\x04Snap\
+    \x10\x05\x12\x0c\n\x08Prewrite\x10\x06\x12\x0f\n\x0bDeleteRange\x10\x07\
+    \x12\r\n\tIngestSST\x10\x08\x12\n\n\x06Update\x10d*\xca\x01\n\x0cAdminCm\
+    dType\x12\x10\n\x0cInvalidAdmin\x10\0\x12\x0e\n\nChangePeer\x10\x01\x12\
+    \r\n\x05Split\x10\x02\x1a\x02\x08\x01\x12\x0e\n\nCompactLog\x10\x03\x12\
+    \x12\n\x0eTransferLeader\x10\x04\x12\x0f\n\x0bComputeHash\x10\x05\x12\
+    \x0e\n\nVerifyHash\x10\x06\x12\x10\n\x0cPrepareMerge\x10\x07\x12\x0f\n\
+    \x0bCommitMerge\x10\x08\x12\x11\n\rRollbackMerge\x10\t\x12\x0e\n\nBatchS\
+    plit\x10\n*F\n\rStatusCmdType\x12\x11\n\rInvalidStatus\x10\0\x12\x10\n\
+    \x0cRegionLeader\x10\x01\x12\x10\n\x0cRegionDetail\x10\x02B\x12\n\x10org\
+    .tikv.kvprotob\x06proto3\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {
