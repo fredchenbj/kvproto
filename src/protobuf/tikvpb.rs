@@ -265,6 +265,8 @@ pub enum BatchCommandsRequest_Request_oneof_cmd {
     RawDeleteRange(super::kvrpcpb::RawDeleteRangeRequest),
     RawBatchScan(super::kvrpcpb::RawBatchScanRequest),
     Coprocessor(super::coprocessor::Request),
+    RawUpdate(super::kvrpcpb::RawUpdateRequest),
+    RawBatchUpdate(super::kvrpcpb::RawBatchUpdateRequest),
 }
 
 impl BatchCommandsRequest_Request {
@@ -1349,6 +1351,104 @@ impl BatchCommandsRequest_Request {
             _ => super::coprocessor::Request::default_instance(),
         }
     }
+
+    // .kvrpcpb.RawUpdateRequest RawUpdate = 100;
+
+    pub fn clear_RawUpdate(&mut self) {
+        self.cmd = ::std::option::Option::None;
+    }
+
+    pub fn has_RawUpdate(&self) -> bool {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawUpdate(..)) => true,
+            _ => false,
+        }
+    }
+
+    // Param is passed by value, moved
+    pub fn set_RawUpdate(&mut self, v: super::kvrpcpb::RawUpdateRequest) {
+        self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawUpdate(v))
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_RawUpdate(&mut self) -> &mut super::kvrpcpb::RawUpdateRequest {
+        if let ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawUpdate(_)) = self.cmd {
+        } else {
+            self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawUpdate(super::kvrpcpb::RawUpdateRequest::new()));
+        }
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawUpdate(ref mut v)) => v,
+            _ => panic!(),
+        }
+    }
+
+    // Take field
+    pub fn take_RawUpdate(&mut self) -> super::kvrpcpb::RawUpdateRequest {
+        if self.has_RawUpdate() {
+            match self.cmd.take() {
+                ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawUpdate(v)) => v,
+                _ => panic!(),
+            }
+        } else {
+            super::kvrpcpb::RawUpdateRequest::new()
+        }
+    }
+
+    pub fn get_RawUpdate(&self) -> &super::kvrpcpb::RawUpdateRequest {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawUpdate(ref v)) => v,
+            _ => super::kvrpcpb::RawUpdateRequest::default_instance(),
+        }
+    }
+
+    // .kvrpcpb.RawBatchUpdateRequest RawBatchUpdate = 101;
+
+    pub fn clear_RawBatchUpdate(&mut self) {
+        self.cmd = ::std::option::Option::None;
+    }
+
+    pub fn has_RawBatchUpdate(&self) -> bool {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(..)) => true,
+            _ => false,
+        }
+    }
+
+    // Param is passed by value, moved
+    pub fn set_RawBatchUpdate(&mut self, v: super::kvrpcpb::RawBatchUpdateRequest) {
+        self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(v))
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_RawBatchUpdate(&mut self) -> &mut super::kvrpcpb::RawBatchUpdateRequest {
+        if let ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(_)) = self.cmd {
+        } else {
+            self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(super::kvrpcpb::RawBatchUpdateRequest::new()));
+        }
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(ref mut v)) => v,
+            _ => panic!(),
+        }
+    }
+
+    // Take field
+    pub fn take_RawBatchUpdate(&mut self) -> super::kvrpcpb::RawBatchUpdateRequest {
+        if self.has_RawBatchUpdate() {
+            match self.cmd.take() {
+                ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(v)) => v,
+                _ => panic!(),
+            }
+        } else {
+            super::kvrpcpb::RawBatchUpdateRequest::new()
+        }
+    }
+
+    pub fn get_RawBatchUpdate(&self) -> &super::kvrpcpb::RawBatchUpdateRequest {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(ref v)) => v,
+            _ => super::kvrpcpb::RawBatchUpdateRequest::default_instance(),
+        }
+    }
 }
 
 impl ::protobuf::Message for BatchCommandsRequest_Request {
@@ -1459,6 +1559,16 @@ impl ::protobuf::Message for BatchCommandsRequest_Request {
             }
         }
         if let Some(BatchCommandsRequest_Request_oneof_cmd::Coprocessor(ref v)) = self.cmd {
+            if !v.is_initialized() {
+                return false;
+            }
+        }
+        if let Some(BatchCommandsRequest_Request_oneof_cmd::RawUpdate(ref v)) = self.cmd {
+            if !v.is_initialized() {
+                return false;
+            }
+        }
+        if let Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(ref v)) = self.cmd {
             if !v.is_initialized() {
                 return false;
             }
@@ -1602,6 +1712,18 @@ impl ::protobuf::Message for BatchCommandsRequest_Request {
                     }
                     self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::Coprocessor(is.read_message()?));
                 },
+                100 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawUpdate(is.read_message()?));
+                },
+                101 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(is.read_message()?));
+                },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
                 },
@@ -1701,6 +1823,14 @@ impl ::protobuf::Message for BatchCommandsRequest_Request {
                     my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
                 },
                 &BatchCommandsRequest_Request_oneof_cmd::Coprocessor(ref v) => {
+                    let len = v.compute_size();
+                    my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+                },
+                &BatchCommandsRequest_Request_oneof_cmd::RawUpdate(ref v) => {
+                    let len = v.compute_size();
+                    my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+                },
+                &BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(ref v) => {
                     let len = v.compute_size();
                     my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
                 },
@@ -1821,6 +1951,16 @@ impl ::protobuf::Message for BatchCommandsRequest_Request {
                 },
                 &BatchCommandsRequest_Request_oneof_cmd::Coprocessor(ref v) => {
                     os.write_tag(22, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+                    os.write_raw_varint32(v.get_cached_size())?;
+                    v.write_to_with_cached_sizes(os)?;
+                },
+                &BatchCommandsRequest_Request_oneof_cmd::RawUpdate(ref v) => {
+                    os.write_tag(100, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+                    os.write_raw_varint32(v.get_cached_size())?;
+                    v.write_to_with_cached_sizes(os)?;
+                },
+                &BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(ref v) => {
+                    os.write_tag(101, ::protobuf::wire_format::WireTypeLengthDelimited)?;
                     os.write_raw_varint32(v.get_cached_size())?;
                     v.write_to_with_cached_sizes(os)?;
                 },
@@ -1978,6 +2118,16 @@ impl ::protobuf::Message for BatchCommandsRequest_Request {
                     BatchCommandsRequest_Request::has_Coprocessor,
                     BatchCommandsRequest_Request::get_Coprocessor,
                 ));
+                fields.push(::protobuf::reflect::accessor::make_singular_message_accessor::<_, super::kvrpcpb::RawUpdateRequest>(
+                    "RawUpdate",
+                    BatchCommandsRequest_Request::has_RawUpdate,
+                    BatchCommandsRequest_Request::get_RawUpdate,
+                ));
+                fields.push(::protobuf::reflect::accessor::make_singular_message_accessor::<_, super::kvrpcpb::RawBatchUpdateRequest>(
+                    "RawBatchUpdate",
+                    BatchCommandsRequest_Request::has_RawBatchUpdate,
+                    BatchCommandsRequest_Request::get_RawBatchUpdate,
+                ));
                 ::protobuf::reflect::MessageDescriptor::new::<BatchCommandsRequest_Request>(
                     "BatchCommandsRequest_Request",
                     fields,
@@ -2022,6 +2172,8 @@ impl ::protobuf::Clear for BatchCommandsRequest_Request {
         self.clear_RawDeleteRange();
         self.clear_RawBatchScan();
         self.clear_Coprocessor();
+        self.clear_RawUpdate();
+        self.clear_RawBatchUpdate();
         self.unknown_fields.clear();
     }
 }
@@ -2317,6 +2469,8 @@ pub enum BatchCommandsResponse_Response_oneof_cmd {
     RawDeleteRange(super::kvrpcpb::RawDeleteRangeResponse),
     RawBatchScan(super::kvrpcpb::RawBatchScanResponse),
     Coprocessor(super::coprocessor::Response),
+    RawUpdate(super::kvrpcpb::RawUpdateResponse),
+    RawBatchUpdate(super::kvrpcpb::RawBatchUpdateResponse),
 }
 
 impl BatchCommandsResponse_Response {
@@ -3401,6 +3555,104 @@ impl BatchCommandsResponse_Response {
             _ => super::coprocessor::Response::default_instance(),
         }
     }
+
+    // .kvrpcpb.RawUpdateResponse RawUpdate = 100;
+
+    pub fn clear_RawUpdate(&mut self) {
+        self.cmd = ::std::option::Option::None;
+    }
+
+    pub fn has_RawUpdate(&self) -> bool {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawUpdate(..)) => true,
+            _ => false,
+        }
+    }
+
+    // Param is passed by value, moved
+    pub fn set_RawUpdate(&mut self, v: super::kvrpcpb::RawUpdateResponse) {
+        self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawUpdate(v))
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_RawUpdate(&mut self) -> &mut super::kvrpcpb::RawUpdateResponse {
+        if let ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawUpdate(_)) = self.cmd {
+        } else {
+            self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawUpdate(super::kvrpcpb::RawUpdateResponse::new()));
+        }
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawUpdate(ref mut v)) => v,
+            _ => panic!(),
+        }
+    }
+
+    // Take field
+    pub fn take_RawUpdate(&mut self) -> super::kvrpcpb::RawUpdateResponse {
+        if self.has_RawUpdate() {
+            match self.cmd.take() {
+                ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawUpdate(v)) => v,
+                _ => panic!(),
+            }
+        } else {
+            super::kvrpcpb::RawUpdateResponse::new()
+        }
+    }
+
+    pub fn get_RawUpdate(&self) -> &super::kvrpcpb::RawUpdateResponse {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawUpdate(ref v)) => v,
+            _ => super::kvrpcpb::RawUpdateResponse::default_instance(),
+        }
+    }
+
+    // .kvrpcpb.RawBatchUpdateResponse RawBatchUpdate = 101;
+
+    pub fn clear_RawBatchUpdate(&mut self) {
+        self.cmd = ::std::option::Option::None;
+    }
+
+    pub fn has_RawBatchUpdate(&self) -> bool {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(..)) => true,
+            _ => false,
+        }
+    }
+
+    // Param is passed by value, moved
+    pub fn set_RawBatchUpdate(&mut self, v: super::kvrpcpb::RawBatchUpdateResponse) {
+        self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(v))
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_RawBatchUpdate(&mut self) -> &mut super::kvrpcpb::RawBatchUpdateResponse {
+        if let ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(_)) = self.cmd {
+        } else {
+            self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(super::kvrpcpb::RawBatchUpdateResponse::new()));
+        }
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(ref mut v)) => v,
+            _ => panic!(),
+        }
+    }
+
+    // Take field
+    pub fn take_RawBatchUpdate(&mut self) -> super::kvrpcpb::RawBatchUpdateResponse {
+        if self.has_RawBatchUpdate() {
+            match self.cmd.take() {
+                ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(v)) => v,
+                _ => panic!(),
+            }
+        } else {
+            super::kvrpcpb::RawBatchUpdateResponse::new()
+        }
+    }
+
+    pub fn get_RawBatchUpdate(&self) -> &super::kvrpcpb::RawBatchUpdateResponse {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(ref v)) => v,
+            _ => super::kvrpcpb::RawBatchUpdateResponse::default_instance(),
+        }
+    }
 }
 
 impl ::protobuf::Message for BatchCommandsResponse_Response {
@@ -3511,6 +3763,16 @@ impl ::protobuf::Message for BatchCommandsResponse_Response {
             }
         }
         if let Some(BatchCommandsResponse_Response_oneof_cmd::Coprocessor(ref v)) = self.cmd {
+            if !v.is_initialized() {
+                return false;
+            }
+        }
+        if let Some(BatchCommandsResponse_Response_oneof_cmd::RawUpdate(ref v)) = self.cmd {
+            if !v.is_initialized() {
+                return false;
+            }
+        }
+        if let Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(ref v)) = self.cmd {
             if !v.is_initialized() {
                 return false;
             }
@@ -3654,6 +3916,18 @@ impl ::protobuf::Message for BatchCommandsResponse_Response {
                     }
                     self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::Coprocessor(is.read_message()?));
                 },
+                100 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawUpdate(is.read_message()?));
+                },
+                101 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(is.read_message()?));
+                },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
                 },
@@ -3753,6 +4027,14 @@ impl ::protobuf::Message for BatchCommandsResponse_Response {
                     my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
                 },
                 &BatchCommandsResponse_Response_oneof_cmd::Coprocessor(ref v) => {
+                    let len = v.compute_size();
+                    my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+                },
+                &BatchCommandsResponse_Response_oneof_cmd::RawUpdate(ref v) => {
+                    let len = v.compute_size();
+                    my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+                },
+                &BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(ref v) => {
                     let len = v.compute_size();
                     my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
                 },
@@ -3873,6 +4155,16 @@ impl ::protobuf::Message for BatchCommandsResponse_Response {
                 },
                 &BatchCommandsResponse_Response_oneof_cmd::Coprocessor(ref v) => {
                     os.write_tag(22, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+                    os.write_raw_varint32(v.get_cached_size())?;
+                    v.write_to_with_cached_sizes(os)?;
+                },
+                &BatchCommandsResponse_Response_oneof_cmd::RawUpdate(ref v) => {
+                    os.write_tag(100, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+                    os.write_raw_varint32(v.get_cached_size())?;
+                    v.write_to_with_cached_sizes(os)?;
+                },
+                &BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(ref v) => {
+                    os.write_tag(101, ::protobuf::wire_format::WireTypeLengthDelimited)?;
                     os.write_raw_varint32(v.get_cached_size())?;
                     v.write_to_with_cached_sizes(os)?;
                 },
@@ -4030,6 +4322,16 @@ impl ::protobuf::Message for BatchCommandsResponse_Response {
                     BatchCommandsResponse_Response::has_Coprocessor,
                     BatchCommandsResponse_Response::get_Coprocessor,
                 ));
+                fields.push(::protobuf::reflect::accessor::make_singular_message_accessor::<_, super::kvrpcpb::RawUpdateResponse>(
+                    "RawUpdate",
+                    BatchCommandsResponse_Response::has_RawUpdate,
+                    BatchCommandsResponse_Response::get_RawUpdate,
+                ));
+                fields.push(::protobuf::reflect::accessor::make_singular_message_accessor::<_, super::kvrpcpb::RawBatchUpdateResponse>(
+                    "RawBatchUpdate",
+                    BatchCommandsResponse_Response::has_RawBatchUpdate,
+                    BatchCommandsResponse_Response::get_RawBatchUpdate,
+                ));
                 ::protobuf::reflect::MessageDescriptor::new::<BatchCommandsResponse_Response>(
                     "BatchCommandsResponse_Response",
                     fields,
@@ -4074,6 +4376,8 @@ impl ::protobuf::Clear for BatchCommandsResponse_Response {
         self.clear_RawDeleteRange();
         self.clear_RawBatchScan();
         self.clear_Coprocessor();
+        self.clear_RawUpdate();
+        self.clear_RawBatchUpdate();
         self.unknown_fields.clear();
     }
 }
@@ -4262,110 +4566,118 @@ impl ::protobuf::reflect::ProtobufValue for BatchRaftMessage {
 
 static file_descriptor_proto_data: &'static [u8] = b"\
     \n\x0ctikvpb.proto\x12\x06tikvpb\x1a\x11coprocessor.proto\x1a\rkvrpcpb.p\
-    roto\x1a\x13raft_serverpb.proto\x1a\x14gogoproto/gogo.proto\"\xf9\n\n\
+    roto\x1a\x13raft_serverpb.proto\x1a\x14gogoproto/gogo.proto\"\xfe\x0b\n\
     \x14BatchCommandsRequest\x12@\n\x08requests\x18\x01\x20\x03(\x0b2$.tikvp\
     b.BatchCommandsRequest.RequestR\x08requests\x12\x1f\n\x0brequest_ids\x18\
-    \x02\x20\x03(\x04R\nrequestIds\x1a\xfd\t\n\x07Request\x12'\n\x03Get\x18\
-    \x01\x20\x01(\x0b2\x13.kvrpcpb.GetRequestH\0R\x03Get\x12*\n\x04Scan\x18\
-    \x02\x20\x01(\x0b2\x14.kvrpcpb.ScanRequestH\0R\x04Scan\x126\n\x08Prewrit\
-    e\x18\x03\x20\x01(\x0b2\x18.kvrpcpb.PrewriteRequestH\0R\x08Prewrite\x120\
-    \n\x06Commit\x18\x04\x20\x01(\x0b2\x16.kvrpcpb.CommitRequestH\0R\x06Comm\
-    it\x120\n\x06Import\x18\x05\x20\x01(\x0b2\x16.kvrpcpb.ImportRequestH\0R\
-    \x06Import\x123\n\x07Cleanup\x18\x06\x20\x01(\x0b2\x17.kvrpcpb.CleanupRe\
-    questH\0R\x07Cleanup\x126\n\x08BatchGet\x18\x07\x20\x01(\x0b2\x18.kvrpcp\
-    b.BatchGetRequestH\0R\x08BatchGet\x12E\n\rBatchRollback\x18\x08\x20\x01(\
-    \x0b2\x1d.kvrpcpb.BatchRollbackRequestH\0R\rBatchRollback\x126\n\x08Scan\
-    Lock\x18\t\x20\x01(\x0b2\x18.kvrpcpb.ScanLockRequestH\0R\x08ScanLock\x12\
-    ?\n\x0bResolveLock\x18\n\x20\x01(\x0b2\x1b.kvrpcpb.ResolveLockRequestH\0\
-    R\x0bResolveLock\x12$\n\x02GC\x18\x0b\x20\x01(\x0b2\x12.kvrpcpb.GCReques\
-    tH\0R\x02GC\x12?\n\x0bDeleteRange\x18\x0c\x20\x01(\x0b2\x1b.kvrpcpb.Dele\
-    teRangeRequestH\0R\x0bDeleteRange\x120\n\x06RawGet\x18\r\x20\x01(\x0b2\
-    \x16.kvrpcpb.RawGetRequestH\0R\x06RawGet\x12?\n\x0bRawBatchGet\x18\x0e\
-    \x20\x01(\x0b2\x1b.kvrpcpb.RawBatchGetRequestH\0R\x0bRawBatchGet\x120\n\
-    \x06RawPut\x18\x0f\x20\x01(\x0b2\x16.kvrpcpb.RawPutRequestH\0R\x06RawPut\
-    \x12?\n\x0bRawBatchPut\x18\x10\x20\x01(\x0b2\x1b.kvrpcpb.RawBatchPutRequ\
-    estH\0R\x0bRawBatchPut\x129\n\tRawDelete\x18\x11\x20\x01(\x0b2\x19.kvrpc\
-    pb.RawDeleteRequestH\0R\tRawDelete\x12H\n\x0eRawBatchDelete\x18\x12\x20\
-    \x01(\x0b2\x1e.kvrpcpb.RawBatchDeleteRequestH\0R\x0eRawBatchDelete\x123\
-    \n\x07RawScan\x18\x13\x20\x01(\x0b2\x17.kvrpcpb.RawScanRequestH\0R\x07Ra\
-    wScan\x12H\n\x0eRawDeleteRange\x18\x14\x20\x01(\x0b2\x1e.kvrpcpb.RawDele\
-    teRangeRequestH\0R\x0eRawDeleteRange\x12B\n\x0cRawBatchScan\x18\x15\x20\
-    \x01(\x0b2\x1c.kvrpcpb.RawBatchScanRequestH\0R\x0cRawBatchScan\x128\n\
-    \x0bCoprocessor\x18\x16\x20\x01(\x0b2\x14.coprocessor.RequestH\0R\x0bCop\
-    rocessorB\x05\n\x03cmd\"\xc7\x0b\n\x15BatchCommandsResponse\x12D\n\tresp\
-    onses\x18\x01\x20\x03(\x0b2&.tikvpb.BatchCommandsResponse.ResponseR\tres\
-    ponses\x12\x1f\n\x0brequest_ids\x18\x02\x20\x03(\x04R\nrequestIds\x120\n\
-    \x14transport_layer_load\x18\x03\x20\x01(\x04R\x12transportLayerLoad\x1a\
-    \x94\n\n\x08Response\x12(\n\x03Get\x18\x01\x20\x01(\x0b2\x14.kvrpcpb.Get\
-    ResponseH\0R\x03Get\x12+\n\x04Scan\x18\x02\x20\x01(\x0b2\x15.kvrpcpb.Sca\
-    nResponseH\0R\x04Scan\x127\n\x08Prewrite\x18\x03\x20\x01(\x0b2\x19.kvrpc\
-    pb.PrewriteResponseH\0R\x08Prewrite\x121\n\x06Commit\x18\x04\x20\x01(\
-    \x0b2\x17.kvrpcpb.CommitResponseH\0R\x06Commit\x121\n\x06Import\x18\x05\
-    \x20\x01(\x0b2\x17.kvrpcpb.ImportResponseH\0R\x06Import\x124\n\x07Cleanu\
-    p\x18\x06\x20\x01(\x0b2\x18.kvrpcpb.CleanupResponseH\0R\x07Cleanup\x127\
-    \n\x08BatchGet\x18\x07\x20\x01(\x0b2\x19.kvrpcpb.BatchGetResponseH\0R\
-    \x08BatchGet\x12F\n\rBatchRollback\x18\x08\x20\x01(\x0b2\x1e.kvrpcpb.Bat\
-    chRollbackResponseH\0R\rBatchRollback\x127\n\x08ScanLock\x18\t\x20\x01(\
-    \x0b2\x19.kvrpcpb.ScanLockResponseH\0R\x08ScanLock\x12@\n\x0bResolveLock\
-    \x18\n\x20\x01(\x0b2\x1c.kvrpcpb.ResolveLockResponseH\0R\x0bResolveLock\
-    \x12%\n\x02GC\x18\x0b\x20\x01(\x0b2\x13.kvrpcpb.GCResponseH\0R\x02GC\x12\
-    @\n\x0bDeleteRange\x18\x0c\x20\x01(\x0b2\x1c.kvrpcpb.DeleteRangeResponse\
-    H\0R\x0bDeleteRange\x121\n\x06RawGet\x18\r\x20\x01(\x0b2\x17.kvrpcpb.Raw\
-    GetResponseH\0R\x06RawGet\x12@\n\x0bRawBatchGet\x18\x0e\x20\x01(\x0b2\
-    \x1c.kvrpcpb.RawBatchGetResponseH\0R\x0bRawBatchGet\x121\n\x06RawPut\x18\
-    \x0f\x20\x01(\x0b2\x17.kvrpcpb.RawPutResponseH\0R\x06RawPut\x12@\n\x0bRa\
-    wBatchPut\x18\x10\x20\x01(\x0b2\x1c.kvrpcpb.RawBatchPutResponseH\0R\x0bR\
-    awBatchPut\x12:\n\tRawDelete\x18\x11\x20\x01(\x0b2\x1a.kvrpcpb.RawDelete\
-    ResponseH\0R\tRawDelete\x12I\n\x0eRawBatchDelete\x18\x12\x20\x01(\x0b2\
-    \x1f.kvrpcpb.RawBatchDeleteResponseH\0R\x0eRawBatchDelete\x124\n\x07RawS\
-    can\x18\x13\x20\x01(\x0b2\x18.kvrpcpb.RawScanResponseH\0R\x07RawScan\x12\
-    I\n\x0eRawDeleteRange\x18\x14\x20\x01(\x0b2\x1f.kvrpcpb.RawDeleteRangeRe\
-    sponseH\0R\x0eRawDeleteRange\x12C\n\x0cRawBatchScan\x18\x15\x20\x01(\x0b\
-    2\x1d.kvrpcpb.RawBatchScanResponseH\0R\x0cRawBatchScan\x129\n\x0bCoproce\
-    ssor\x18\x16\x20\x01(\x0b2\x15.coprocessor.ResponseH\0R\x0bCoprocessorB\
-    \x05\n\x03cmd\"B\n\x10BatchRaftMessage\x12.\n\x04msgs\x18\x01\x20\x03(\
-    \x0b2\x1a.raft_serverpb.RaftMessageR\x04msgs2\xa7\x11\n\x04Tikv\x124\n\
-    \x05KvGet\x12\x13.kvrpcpb.GetRequest\x1a\x14.kvrpcpb.GetResponse\"\0\x12\
-    7\n\x06KvScan\x12\x14.kvrpcpb.ScanRequest\x1a\x15.kvrpcpb.ScanResponse\"\
-    \0\x12C\n\nKvPrewrite\x12\x18.kvrpcpb.PrewriteRequest\x1a\x19.kvrpcpb.Pr\
-    ewriteResponse\"\0\x12=\n\x08KvCommit\x12\x16.kvrpcpb.CommitRequest\x1a\
-    \x17.kvrpcpb.CommitResponse\"\0\x12=\n\x08KvImport\x12\x16.kvrpcpb.Impor\
-    tRequest\x1a\x17.kvrpcpb.ImportResponse\"\0\x12@\n\tKvCleanup\x12\x17.kv\
-    rpcpb.CleanupRequest\x1a\x18.kvrpcpb.CleanupResponse\"\0\x12C\n\nKvBatch\
-    Get\x12\x18.kvrpcpb.BatchGetRequest\x1a\x19.kvrpcpb.BatchGetResponse\"\0\
-    \x12R\n\x0fKvBatchRollback\x12\x1d.kvrpcpb.BatchRollbackRequest\x1a\x1e.\
-    kvrpcpb.BatchRollbackResponse\"\0\x12C\n\nKvScanLock\x12\x18.kvrpcpb.Sca\
-    nLockRequest\x1a\x19.kvrpcpb.ScanLockResponse\"\0\x12L\n\rKvResolveLock\
-    \x12\x1b.kvrpcpb.ResolveLockRequest\x1a\x1c.kvrpcpb.ResolveLockResponse\
-    \"\0\x121\n\x04KvGC\x12\x12.kvrpcpb.GCRequest\x1a\x13.kvrpcpb.GCResponse\
-    \"\0\x12L\n\rKvDeleteRange\x12\x1b.kvrpcpb.DeleteRangeRequest\x1a\x1c.kv\
-    rpcpb.DeleteRangeResponse\"\0\x12;\n\x06RawGet\x12\x16.kvrpcpb.RawGetReq\
-    uest\x1a\x17.kvrpcpb.RawGetResponse\"\0\x12J\n\x0bRawBatchGet\x12\x1b.kv\
-    rpcpb.RawBatchGetRequest\x1a\x1c.kvrpcpb.RawBatchGetResponse\"\0\x12;\n\
-    \x06RawPut\x12\x16.kvrpcpb.RawPutRequest\x1a\x17.kvrpcpb.RawPutResponse\
-    \"\0\x12J\n\x0bRawBatchPut\x12\x1b.kvrpcpb.RawBatchPutRequest\x1a\x1c.kv\
-    rpcpb.RawBatchPutResponse\"\0\x12D\n\tRawDelete\x12\x19.kvrpcpb.RawDelet\
-    eRequest\x1a\x1a.kvrpcpb.RawDeleteResponse\"\0\x12S\n\x0eRawBatchDelete\
-    \x12\x1e.kvrpcpb.RawBatchDeleteRequest\x1a\x1f.kvrpcpb.RawBatchDeleteRes\
-    ponse\"\0\x12>\n\x07RawScan\x12\x17.kvrpcpb.RawScanRequest\x1a\x18.kvrpc\
-    pb.RawScanResponse\"\0\x12S\n\x0eRawDeleteRange\x12\x1e.kvrpcpb.RawDelet\
-    eRangeRequest\x1a\x1f.kvrpcpb.RawDeleteRangeResponse\"\0\x12M\n\x0cRawBa\
-    tchScan\x12\x1c.kvrpcpb.RawBatchScanRequest\x1a\x1d.kvrpcpb.RawBatchScan\
-    Response\"\0\x12_\n\x12UnsafeDestroyRange\x12\".kvrpcpb.UnsafeDestroyRan\
-    geRequest\x1a#.kvrpcpb.UnsafeDestroyRangeResponse\"\0\x12<\n\x0bCoproces\
-    sor\x12\x14.coprocessor.Request\x1a\x15.coprocessor.Response\"\0\x12D\n\
-    \x11CoprocessorStream\x12\x14.coprocessor.Request\x1a\x15.coprocessor.Re\
-    sponse\"\00\x01\x12;\n\x04Raft\x12\x1a.raft_serverpb.RaftMessage\x1a\x13\
-    .raft_serverpb.Done\"\0(\x01\x12>\n\tBatchRaft\x12\x18.tikvpb.BatchRaftM\
-    essage\x1a\x13.raft_serverpb.Done\"\0(\x01\x12A\n\x08Snapshot\x12\x1c.ra\
-    ft_serverpb.SnapshotChunk\x1a\x13.raft_serverpb.Done\"\0(\x01\x12J\n\x0b\
-    SplitRegion\x12\x1b.kvrpcpb.SplitRegionRequest\x1a\x1c.kvrpcpb.SplitRegi\
-    onResponse\"\0\x12M\n\x0cMvccGetByKey\x12\x1c.kvrpcpb.MvccGetByKeyReques\
-    t\x1a\x1d.kvrpcpb.MvccGetByKeyResponse\"\0\x12Y\n\x10MvccGetByStartTs\
-    \x12\x20.kvrpcpb.MvccGetByStartTsRequest\x1a!.kvrpcpb.MvccGetByStartTsRe\
-    sponse\"\0\x12R\n\rBatchCommands\x12\x1c.tikvpb.BatchCommandsRequest\x1a\
-    \x1d.tikvpb.BatchCommandsResponse\"\0(\x010\x01B\x1e\n\x10org.tikv.kvpro\
-    to\xc8\xe2\x1e\x01\xe0\xe2\x1e\x01\xd0\xe2\x1e\x01b\x06proto3\
+    \x02\x20\x03(\x04R\nrequestIds\x1a\x82\x0b\n\x07Request\x12'\n\x03Get\
+    \x18\x01\x20\x01(\x0b2\x13.kvrpcpb.GetRequestH\0R\x03Get\x12*\n\x04Scan\
+    \x18\x02\x20\x01(\x0b2\x14.kvrpcpb.ScanRequestH\0R\x04Scan\x126\n\x08Pre\
+    write\x18\x03\x20\x01(\x0b2\x18.kvrpcpb.PrewriteRequestH\0R\x08Prewrite\
+    \x120\n\x06Commit\x18\x04\x20\x01(\x0b2\x16.kvrpcpb.CommitRequestH\0R\
+    \x06Commit\x120\n\x06Import\x18\x05\x20\x01(\x0b2\x16.kvrpcpb.ImportRequ\
+    estH\0R\x06Import\x123\n\x07Cleanup\x18\x06\x20\x01(\x0b2\x17.kvrpcpb.Cl\
+    eanupRequestH\0R\x07Cleanup\x126\n\x08BatchGet\x18\x07\x20\x01(\x0b2\x18\
+    .kvrpcpb.BatchGetRequestH\0R\x08BatchGet\x12E\n\rBatchRollback\x18\x08\
+    \x20\x01(\x0b2\x1d.kvrpcpb.BatchRollbackRequestH\0R\rBatchRollback\x126\
+    \n\x08ScanLock\x18\t\x20\x01(\x0b2\x18.kvrpcpb.ScanLockRequestH\0R\x08Sc\
+    anLock\x12?\n\x0bResolveLock\x18\n\x20\x01(\x0b2\x1b.kvrpcpb.ResolveLock\
+    RequestH\0R\x0bResolveLock\x12$\n\x02GC\x18\x0b\x20\x01(\x0b2\x12.kvrpcp\
+    b.GCRequestH\0R\x02GC\x12?\n\x0bDeleteRange\x18\x0c\x20\x01(\x0b2\x1b.kv\
+    rpcpb.DeleteRangeRequestH\0R\x0bDeleteRange\x120\n\x06RawGet\x18\r\x20\
+    \x01(\x0b2\x16.kvrpcpb.RawGetRequestH\0R\x06RawGet\x12?\n\x0bRawBatchGet\
+    \x18\x0e\x20\x01(\x0b2\x1b.kvrpcpb.RawBatchGetRequestH\0R\x0bRawBatchGet\
+    \x120\n\x06RawPut\x18\x0f\x20\x01(\x0b2\x16.kvrpcpb.RawPutRequestH\0R\
+    \x06RawPut\x12?\n\x0bRawBatchPut\x18\x10\x20\x01(\x0b2\x1b.kvrpcpb.RawBa\
+    tchPutRequestH\0R\x0bRawBatchPut\x129\n\tRawDelete\x18\x11\x20\x01(\x0b2\
+    \x19.kvrpcpb.RawDeleteRequestH\0R\tRawDelete\x12H\n\x0eRawBatchDelete\
+    \x18\x12\x20\x01(\x0b2\x1e.kvrpcpb.RawBatchDeleteRequestH\0R\x0eRawBatch\
+    Delete\x123\n\x07RawScan\x18\x13\x20\x01(\x0b2\x17.kvrpcpb.RawScanReques\
+    tH\0R\x07RawScan\x12H\n\x0eRawDeleteRange\x18\x14\x20\x01(\x0b2\x1e.kvrp\
+    cpb.RawDeleteRangeRequestH\0R\x0eRawDeleteRange\x12B\n\x0cRawBatchScan\
+    \x18\x15\x20\x01(\x0b2\x1c.kvrpcpb.RawBatchScanRequestH\0R\x0cRawBatchSc\
+    an\x128\n\x0bCoprocessor\x18\x16\x20\x01(\x0b2\x14.coprocessor.RequestH\
+    \0R\x0bCoprocessor\x129\n\tRawUpdate\x18d\x20\x01(\x0b2\x19.kvrpcpb.RawU\
+    pdateRequestH\0R\tRawUpdate\x12H\n\x0eRawBatchUpdate\x18e\x20\x01(\x0b2\
+    \x1e.kvrpcpb.RawBatchUpdateRequestH\0R\x0eRawBatchUpdateB\x05\n\x03cmd\"\
+    \xce\x0c\n\x15BatchCommandsResponse\x12D\n\tresponses\x18\x01\x20\x03(\
+    \x0b2&.tikvpb.BatchCommandsResponse.ResponseR\tresponses\x12\x1f\n\x0bre\
+    quest_ids\x18\x02\x20\x03(\x04R\nrequestIds\x120\n\x14transport_layer_lo\
+    ad\x18\x03\x20\x01(\x04R\x12transportLayerLoad\x1a\x9b\x0b\n\x08Response\
+    \x12(\n\x03Get\x18\x01\x20\x01(\x0b2\x14.kvrpcpb.GetResponseH\0R\x03Get\
+    \x12+\n\x04Scan\x18\x02\x20\x01(\x0b2\x15.kvrpcpb.ScanResponseH\0R\x04Sc\
+    an\x127\n\x08Prewrite\x18\x03\x20\x01(\x0b2\x19.kvrpcpb.PrewriteResponse\
+    H\0R\x08Prewrite\x121\n\x06Commit\x18\x04\x20\x01(\x0b2\x17.kvrpcpb.Comm\
+    itResponseH\0R\x06Commit\x121\n\x06Import\x18\x05\x20\x01(\x0b2\x17.kvrp\
+    cpb.ImportResponseH\0R\x06Import\x124\n\x07Cleanup\x18\x06\x20\x01(\x0b2\
+    \x18.kvrpcpb.CleanupResponseH\0R\x07Cleanup\x127\n\x08BatchGet\x18\x07\
+    \x20\x01(\x0b2\x19.kvrpcpb.BatchGetResponseH\0R\x08BatchGet\x12F\n\rBatc\
+    hRollback\x18\x08\x20\x01(\x0b2\x1e.kvrpcpb.BatchRollbackResponseH\0R\rB\
+    atchRollback\x127\n\x08ScanLock\x18\t\x20\x01(\x0b2\x19.kvrpcpb.ScanLock\
+    ResponseH\0R\x08ScanLock\x12@\n\x0bResolveLock\x18\n\x20\x01(\x0b2\x1c.k\
+    vrpcpb.ResolveLockResponseH\0R\x0bResolveLock\x12%\n\x02GC\x18\x0b\x20\
+    \x01(\x0b2\x13.kvrpcpb.GCResponseH\0R\x02GC\x12@\n\x0bDeleteRange\x18\
+    \x0c\x20\x01(\x0b2\x1c.kvrpcpb.DeleteRangeResponseH\0R\x0bDeleteRange\
+    \x121\n\x06RawGet\x18\r\x20\x01(\x0b2\x17.kvrpcpb.RawGetResponseH\0R\x06\
+    RawGet\x12@\n\x0bRawBatchGet\x18\x0e\x20\x01(\x0b2\x1c.kvrpcpb.RawBatchG\
+    etResponseH\0R\x0bRawBatchGet\x121\n\x06RawPut\x18\x0f\x20\x01(\x0b2\x17\
+    .kvrpcpb.RawPutResponseH\0R\x06RawPut\x12@\n\x0bRawBatchPut\x18\x10\x20\
+    \x01(\x0b2\x1c.kvrpcpb.RawBatchPutResponseH\0R\x0bRawBatchPut\x12:\n\tRa\
+    wDelete\x18\x11\x20\x01(\x0b2\x1a.kvrpcpb.RawDeleteResponseH\0R\tRawDele\
+    te\x12I\n\x0eRawBatchDelete\x18\x12\x20\x01(\x0b2\x1f.kvrpcpb.RawBatchDe\
+    leteResponseH\0R\x0eRawBatchDelete\x124\n\x07RawScan\x18\x13\x20\x01(\
+    \x0b2\x18.kvrpcpb.RawScanResponseH\0R\x07RawScan\x12I\n\x0eRawDeleteRang\
+    e\x18\x14\x20\x01(\x0b2\x1f.kvrpcpb.RawDeleteRangeResponseH\0R\x0eRawDel\
+    eteRange\x12C\n\x0cRawBatchScan\x18\x15\x20\x01(\x0b2\x1d.kvrpcpb.RawBat\
+    chScanResponseH\0R\x0cRawBatchScan\x129\n\x0bCoprocessor\x18\x16\x20\x01\
+    (\x0b2\x15.coprocessor.ResponseH\0R\x0bCoprocessor\x12:\n\tRawUpdate\x18\
+    d\x20\x01(\x0b2\x1a.kvrpcpb.RawUpdateResponseH\0R\tRawUpdate\x12I\n\x0eR\
+    awBatchUpdate\x18e\x20\x01(\x0b2\x1f.kvrpcpb.RawBatchUpdateResponseH\0R\
+    \x0eRawBatchUpdateB\x05\n\x03cmd\"B\n\x10BatchRaftMessage\x12.\n\x04msgs\
+    \x18\x01\x20\x03(\x0b2\x1a.raft_serverpb.RaftMessageR\x04msgs2\xc2\x12\n\
+    \x04Tikv\x124\n\x05KvGet\x12\x13.kvrpcpb.GetRequest\x1a\x14.kvrpcpb.GetR\
+    esponse\"\0\x127\n\x06KvScan\x12\x14.kvrpcpb.ScanRequest\x1a\x15.kvrpcpb\
+    .ScanResponse\"\0\x12C\n\nKvPrewrite\x12\x18.kvrpcpb.PrewriteRequest\x1a\
+    \x19.kvrpcpb.PrewriteResponse\"\0\x12=\n\x08KvCommit\x12\x16.kvrpcpb.Com\
+    mitRequest\x1a\x17.kvrpcpb.CommitResponse\"\0\x12=\n\x08KvImport\x12\x16\
+    .kvrpcpb.ImportRequest\x1a\x17.kvrpcpb.ImportResponse\"\0\x12@\n\tKvClea\
+    nup\x12\x17.kvrpcpb.CleanupRequest\x1a\x18.kvrpcpb.CleanupResponse\"\0\
+    \x12C\n\nKvBatchGet\x12\x18.kvrpcpb.BatchGetRequest\x1a\x19.kvrpcpb.Batc\
+    hGetResponse\"\0\x12R\n\x0fKvBatchRollback\x12\x1d.kvrpcpb.BatchRollback\
+    Request\x1a\x1e.kvrpcpb.BatchRollbackResponse\"\0\x12C\n\nKvScanLock\x12\
+    \x18.kvrpcpb.ScanLockRequest\x1a\x19.kvrpcpb.ScanLockResponse\"\0\x12L\n\
+    \rKvResolveLock\x12\x1b.kvrpcpb.ResolveLockRequest\x1a\x1c.kvrpcpb.Resol\
+    veLockResponse\"\0\x121\n\x04KvGC\x12\x12.kvrpcpb.GCRequest\x1a\x13.kvrp\
+    cpb.GCResponse\"\0\x12L\n\rKvDeleteRange\x12\x1b.kvrpcpb.DeleteRangeRequ\
+    est\x1a\x1c.kvrpcpb.DeleteRangeResponse\"\0\x12;\n\x06RawGet\x12\x16.kvr\
+    pcpb.RawGetRequest\x1a\x17.kvrpcpb.RawGetResponse\"\0\x12J\n\x0bRawBatch\
+    Get\x12\x1b.kvrpcpb.RawBatchGetRequest\x1a\x1c.kvrpcpb.RawBatchGetRespon\
+    se\"\0\x12;\n\x06RawPut\x12\x16.kvrpcpb.RawPutRequest\x1a\x17.kvrpcpb.Ra\
+    wPutResponse\"\0\x12J\n\x0bRawBatchPut\x12\x1b.kvrpcpb.RawBatchPutReques\
+    t\x1a\x1c.kvrpcpb.RawBatchPutResponse\"\0\x12D\n\tRawUpdate\x12\x19.kvrp\
+    cpb.RawUpdateRequest\x1a\x1a.kvrpcpb.RawUpdateResponse\"\0\x12S\n\x0eRaw\
+    BatchUpdate\x12\x1e.kvrpcpb.RawBatchUpdateRequest\x1a\x1f.kvrpcpb.RawBat\
+    chUpdateResponse\"\0\x12D\n\tRawDelete\x12\x19.kvrpcpb.RawDeleteRequest\
+    \x1a\x1a.kvrpcpb.RawDeleteResponse\"\0\x12S\n\x0eRawBatchDelete\x12\x1e.\
+    kvrpcpb.RawBatchDeleteRequest\x1a\x1f.kvrpcpb.RawBatchDeleteResponse\"\0\
+    \x12>\n\x07RawScan\x12\x17.kvrpcpb.RawScanRequest\x1a\x18.kvrpcpb.RawSca\
+    nResponse\"\0\x12S\n\x0eRawDeleteRange\x12\x1e.kvrpcpb.RawDeleteRangeReq\
+    uest\x1a\x1f.kvrpcpb.RawDeleteRangeResponse\"\0\x12M\n\x0cRawBatchScan\
+    \x12\x1c.kvrpcpb.RawBatchScanRequest\x1a\x1d.kvrpcpb.RawBatchScanRespons\
+    e\"\0\x12_\n\x12UnsafeDestroyRange\x12\".kvrpcpb.UnsafeDestroyRangeReque\
+    st\x1a#.kvrpcpb.UnsafeDestroyRangeResponse\"\0\x12<\n\x0bCoprocessor\x12\
+    \x14.coprocessor.Request\x1a\x15.coprocessor.Response\"\0\x12D\n\x11Copr\
+    ocessorStream\x12\x14.coprocessor.Request\x1a\x15.coprocessor.Response\"\
+    \00\x01\x12;\n\x04Raft\x12\x1a.raft_serverpb.RaftMessage\x1a\x13.raft_se\
+    rverpb.Done\"\0(\x01\x12>\n\tBatchRaft\x12\x18.tikvpb.BatchRaftMessage\
+    \x1a\x13.raft_serverpb.Done\"\0(\x01\x12A\n\x08Snapshot\x12\x1c.raft_ser\
+    verpb.SnapshotChunk\x1a\x13.raft_serverpb.Done\"\0(\x01\x12J\n\x0bSplitR\
+    egion\x12\x1b.kvrpcpb.SplitRegionRequest\x1a\x1c.kvrpcpb.SplitRegionResp\
+    onse\"\0\x12M\n\x0cMvccGetByKey\x12\x1c.kvrpcpb.MvccGetByKeyRequest\x1a\
+    \x1d.kvrpcpb.MvccGetByKeyResponse\"\0\x12Y\n\x10MvccGetByStartTs\x12\x20\
+    .kvrpcpb.MvccGetByStartTsRequest\x1a!.kvrpcpb.MvccGetByStartTsResponse\"\
+    \0\x12R\n\rBatchCommands\x12\x1c.tikvpb.BatchCommandsRequest\x1a\x1d.tik\
+    vpb.BatchCommandsResponse\"\0(\x010\x01B\x1e\n\x10org.tikv.kvproto\xd0\
+    \xe2\x1e\x01\xc8\xe2\x1e\x01\xe0\xe2\x1e\x01b\x06proto3\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {
