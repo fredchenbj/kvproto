@@ -36,6 +36,8 @@ service Tikv {
     rpc RawBatchGet(kvrpcpb.RawBatchGetRequest) returns (kvrpcpb.RawBatchGetResponse) {}
     rpc RawPut(kvrpcpb.RawPutRequest) returns (kvrpcpb.RawPutResponse) {}
     rpc RawBatchPut(kvrpcpb.RawBatchPutRequest) returns (kvrpcpb.RawBatchPutResponse) {}
+    rpc RawUpdate(kvrpcpb.RawUpdateRequest) returns (kvrpcpb.RawUpdateResponse) {}
+    rpc RawBatchUpdate(kvrpcpb.RawBatchUpdateRequest) returns (kvrpcpb.RawBatchUpdateResponse) {}
     rpc RawDelete(kvrpcpb.RawDeleteRequest) returns (kvrpcpb.RawDeleteResponse) {}
     rpc RawBatchDelete(kvrpcpb.RawBatchDeleteRequest) returns (kvrpcpb.RawBatchDeleteResponse) {}
     rpc RawScan(kvrpcpb.RawScanRequest) returns (kvrpcpb.RawScanResponse) {}
@@ -94,6 +96,9 @@ message BatchCommandsRequest {
             kvrpcpb.RawBatchScanRequest RawBatchScan = 21;
 
             coprocessor.Request Coprocessor = 22;
+
+            kvrpcpb.RawUpdateRequest RawUpdate = 100;
+            kvrpcpb.RawBatchUpdateRequest RawBatchUpdate = 101;
         }
     }
 }
@@ -130,6 +135,9 @@ message BatchCommandsResponse {
             kvrpcpb.RawBatchScanResponse RawBatchScan = 21;
 
             coprocessor.Response Coprocessor = 22;
+
+            kvrpcpb.RawUpdateResponse RawUpdate = 100;
+            kvrpcpb.RawBatchUpdateResponse RawBatchUpdate = 101;
         }
     }
 }
