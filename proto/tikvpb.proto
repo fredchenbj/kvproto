@@ -37,6 +37,8 @@ service Tikv {
     // RawKV commands.
     rpc RawGet(kvrpcpb.RawGetRequest) returns (kvrpcpb.RawGetResponse) {}
     rpc RawBatchGet(kvrpcpb.RawBatchGetRequest) returns (kvrpcpb.RawBatchGetResponse) {}
+    rpc RawGetByIndex(kvrpcpb.RawGetByIndexRequest) returns (kvrpcpb.RawGetByIndexResponse) {}
+    rpc RawBatchGetByIndex(kvrpcpb.RawBatchGetByIndexRequest) returns (kvrpcpb.RawBatchGetByIndexResponse) {}
     rpc RawPut(kvrpcpb.RawPutRequest) returns (kvrpcpb.RawPutResponse) {}
     rpc RawBatchPut(kvrpcpb.RawBatchPutRequest) returns (kvrpcpb.RawBatchPutResponse) {}
     rpc RawUpdate(kvrpcpb.RawUpdateRequest) returns (kvrpcpb.RawUpdateResponse) {}
@@ -107,6 +109,8 @@ message BatchCommandsRequest {
 
             kvrpcpb.RawUpdateRequest RawUpdate = 100;
             kvrpcpb.RawBatchUpdateRequest RawBatchUpdate = 101;
+            kvrpcpb.RawGetByIndexRequest RawGetByIndex = 102;
+            kvrpcpb.RawBatchGetByIndexRequest RawBatchGetByIndex = 103;
 	    
 			// For some test cases.
 	    	BatchCommandsEmptyRequest Empty = 255;
@@ -153,6 +157,8 @@ message BatchCommandsResponse {
 
             kvrpcpb.RawUpdateResponse RawUpdate = 100;
             kvrpcpb.RawBatchUpdateResponse RawBatchUpdate = 101;
+            kvrpcpb.RawGetByIndexResponse RawGetByIndex = 102;
+            kvrpcpb.RawBatchGetByIndexResponse RawBatchGetByIndex = 103;
 
 	    	// For some test cases.
 	    	BatchCommandsEmptyResponse Empty = 255;
