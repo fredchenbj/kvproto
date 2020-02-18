@@ -137,6 +137,20 @@ const METHOD_TIKV_RAW_BATCH_GET: ::grpcio::Method<super::kvrpcpb::RawBatchGetReq
     resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
 };
 
+const METHOD_TIKV_RAW_GET_BY_INDEX: ::grpcio::Method<super::kvrpcpb::RawGetByIndexRequest, super::kvrpcpb::RawGetByIndexResponse> = ::grpcio::Method {
+    ty: ::grpcio::MethodType::Unary,
+    name: "/tikvpb.Tikv/RawGetByIndex",
+    req_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+    resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+};
+
+const METHOD_TIKV_RAW_BATCH_GET_BY_INDEX: ::grpcio::Method<super::kvrpcpb::RawBatchGetByIndexRequest, super::kvrpcpb::RawBatchGetByIndexResponse> = ::grpcio::Method {
+    ty: ::grpcio::MethodType::Unary,
+    name: "/tikvpb.Tikv/RawBatchGetByIndex",
+    req_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+    resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+};
+
 const METHOD_TIKV_RAW_PUT: ::grpcio::Method<super::kvrpcpb::RawPutRequest, super::kvrpcpb::RawPutResponse> = ::grpcio::Method {
     ty: ::grpcio::MethodType::Unary,
     name: "/tikvpb.Tikv/RawPut",
@@ -561,6 +575,38 @@ impl TikvClient {
         self.raw_batch_get_async_opt(req, ::grpcio::CallOption::default())
     }
 
+    pub fn raw_get_by_index_opt(&self, req: &super::kvrpcpb::RawGetByIndexRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::kvrpcpb::RawGetByIndexResponse> {
+        self.client.unary_call(&METHOD_TIKV_RAW_GET_BY_INDEX, req, opt)
+    }
+
+    pub fn raw_get_by_index(&self, req: &super::kvrpcpb::RawGetByIndexRequest) -> ::grpcio::Result<super::kvrpcpb::RawGetByIndexResponse> {
+        self.raw_get_by_index_opt(req, ::grpcio::CallOption::default())
+    }
+
+    pub fn raw_get_by_index_async_opt(&self, req: &super::kvrpcpb::RawGetByIndexRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::kvrpcpb::RawGetByIndexResponse>> {
+        self.client.unary_call_async(&METHOD_TIKV_RAW_GET_BY_INDEX, req, opt)
+    }
+
+    pub fn raw_get_by_index_async(&self, req: &super::kvrpcpb::RawGetByIndexRequest) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::kvrpcpb::RawGetByIndexResponse>> {
+        self.raw_get_by_index_async_opt(req, ::grpcio::CallOption::default())
+    }
+
+    pub fn raw_batch_get_by_index_opt(&self, req: &super::kvrpcpb::RawBatchGetByIndexRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::kvrpcpb::RawBatchGetByIndexResponse> {
+        self.client.unary_call(&METHOD_TIKV_RAW_BATCH_GET_BY_INDEX, req, opt)
+    }
+
+    pub fn raw_batch_get_by_index(&self, req: &super::kvrpcpb::RawBatchGetByIndexRequest) -> ::grpcio::Result<super::kvrpcpb::RawBatchGetByIndexResponse> {
+        self.raw_batch_get_by_index_opt(req, ::grpcio::CallOption::default())
+    }
+
+    pub fn raw_batch_get_by_index_async_opt(&self, req: &super::kvrpcpb::RawBatchGetByIndexRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::kvrpcpb::RawBatchGetByIndexResponse>> {
+        self.client.unary_call_async(&METHOD_TIKV_RAW_BATCH_GET_BY_INDEX, req, opt)
+    }
+
+    pub fn raw_batch_get_by_index_async(&self, req: &super::kvrpcpb::RawBatchGetByIndexRequest) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::kvrpcpb::RawBatchGetByIndexResponse>> {
+        self.raw_batch_get_by_index_async_opt(req, ::grpcio::CallOption::default())
+    }
+
     pub fn raw_put_opt(&self, req: &super::kvrpcpb::RawPutRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::kvrpcpb::RawPutResponse> {
         self.client.unary_call(&METHOD_TIKV_RAW_PUT, req, opt)
     }
@@ -863,6 +909,8 @@ pub trait Tikv {
     fn kv_delete_range(&mut self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::DeleteRangeRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::DeleteRangeResponse>);
     fn raw_get(&mut self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawGetRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawGetResponse>);
     fn raw_batch_get(&mut self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawBatchGetRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawBatchGetResponse>);
+    fn raw_get_by_index(&mut self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawGetByIndexRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawGetByIndexResponse>);
+    fn raw_batch_get_by_index(&mut self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawBatchGetByIndexRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawBatchGetByIndexResponse>);
     fn raw_put(&mut self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawPutRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawPutResponse>);
     fn raw_batch_put(&mut self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawBatchPutRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawBatchPutResponse>);
     fn raw_update(&mut self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawUpdateRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawUpdateResponse>);
@@ -954,6 +1002,14 @@ pub fn create_tikv<S: Tikv + Send + Clone + 'static>(s: S) -> ::grpcio::Service 
     let mut instance = s.clone();
     builder = builder.add_unary_handler(&METHOD_TIKV_RAW_BATCH_GET, move |ctx, req, resp| {
         instance.raw_batch_get(ctx, req, resp)
+    });
+    let mut instance = s.clone();
+    builder = builder.add_unary_handler(&METHOD_TIKV_RAW_GET_BY_INDEX, move |ctx, req, resp| {
+        instance.raw_get_by_index(ctx, req, resp)
+    });
+    let mut instance = s.clone();
+    builder = builder.add_unary_handler(&METHOD_TIKV_RAW_BATCH_GET_BY_INDEX, move |ctx, req, resp| {
+        instance.raw_batch_get_by_index(ctx, req, resp)
     });
     let mut instance = s.clone();
     builder = builder.add_unary_handler(&METHOD_TIKV_RAW_PUT, move |ctx, req, resp| {

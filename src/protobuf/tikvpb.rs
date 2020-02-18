@@ -260,6 +260,8 @@ pub enum BatchCommandsRequest_Request_oneof_cmd {
     TxnHeartBeat(super::kvrpcpb::TxnHeartBeatRequest),
     RawUpdate(super::kvrpcpb::RawUpdateRequest),
     RawBatchUpdate(super::kvrpcpb::RawBatchUpdateRequest),
+    RawGetByIndex(super::kvrpcpb::RawGetByIndexRequest),
+    RawBatchGetByIndex(super::kvrpcpb::RawBatchGetByIndexRequest),
     Empty(BatchCommandsEmptyRequest),
 }
 
@@ -293,6 +295,8 @@ impl crate::text::PbPrint for BatchCommandsRequest_Request_oneof_cmd {
             BatchCommandsRequest_Request_oneof_cmd::TxnHeartBeat(v) => crate::text::PbPrint::fmt(v, name, buf),
             BatchCommandsRequest_Request_oneof_cmd::RawUpdate(v) => crate::text::PbPrint::fmt(v, name, buf),
             BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(v) => crate::text::PbPrint::fmt(v, name, buf),
+            BatchCommandsRequest_Request_oneof_cmd::RawGetByIndex(v) => crate::text::PbPrint::fmt(v, name, buf),
+            BatchCommandsRequest_Request_oneof_cmd::RawBatchGetByIndex(v) => crate::text::PbPrint::fmt(v, name, buf),
             BatchCommandsRequest_Request_oneof_cmd::Empty(v) => crate::text::PbPrint::fmt(v, name, buf),
         }
     }
@@ -1626,6 +1630,104 @@ impl BatchCommandsRequest_Request {
         }
     }
 
+    // .kvrpcpb.RawGetByIndexRequest RawGetByIndex = 102;
+
+    pub fn clear_RawGetByIndex(&mut self) {
+        self.cmd = ::std::option::Option::None;
+    }
+
+    pub fn has_RawGetByIndex(&self) -> bool {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawGetByIndex(..)) => true,
+            _ => false,
+        }
+    }
+
+    // Param is passed by value, moved
+    pub fn set_RawGetByIndex(&mut self, v: super::kvrpcpb::RawGetByIndexRequest) {
+        self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawGetByIndex(v))
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_RawGetByIndex(&mut self) -> &mut super::kvrpcpb::RawGetByIndexRequest {
+        if let ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawGetByIndex(_)) = self.cmd {
+        } else {
+            self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawGetByIndex(super::kvrpcpb::RawGetByIndexRequest::new()));
+        }
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawGetByIndex(ref mut v)) => v,
+            _ => panic!(),
+        }
+    }
+
+    // Take field
+    pub fn take_RawGetByIndex(&mut self) -> super::kvrpcpb::RawGetByIndexRequest {
+        if self.has_RawGetByIndex() {
+            match self.cmd.take() {
+                ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawGetByIndex(v)) => v,
+                _ => panic!(),
+            }
+        } else {
+            super::kvrpcpb::RawGetByIndexRequest::new()
+        }
+    }
+
+    pub fn get_RawGetByIndex(&self) -> &super::kvrpcpb::RawGetByIndexRequest {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawGetByIndex(ref v)) => v,
+            _ => super::kvrpcpb::RawGetByIndexRequest::default_instance(),
+        }
+    }
+
+    // .kvrpcpb.RawBatchGetByIndexRequest RawBatchGetByIndex = 103;
+
+    pub fn clear_RawBatchGetByIndex(&mut self) {
+        self.cmd = ::std::option::Option::None;
+    }
+
+    pub fn has_RawBatchGetByIndex(&self) -> bool {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchGetByIndex(..)) => true,
+            _ => false,
+        }
+    }
+
+    // Param is passed by value, moved
+    pub fn set_RawBatchGetByIndex(&mut self, v: super::kvrpcpb::RawBatchGetByIndexRequest) {
+        self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchGetByIndex(v))
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_RawBatchGetByIndex(&mut self) -> &mut super::kvrpcpb::RawBatchGetByIndexRequest {
+        if let ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchGetByIndex(_)) = self.cmd {
+        } else {
+            self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchGetByIndex(super::kvrpcpb::RawBatchGetByIndexRequest::new()));
+        }
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchGetByIndex(ref mut v)) => v,
+            _ => panic!(),
+        }
+    }
+
+    // Take field
+    pub fn take_RawBatchGetByIndex(&mut self) -> super::kvrpcpb::RawBatchGetByIndexRequest {
+        if self.has_RawBatchGetByIndex() {
+            match self.cmd.take() {
+                ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchGetByIndex(v)) => v,
+                _ => panic!(),
+            }
+        } else {
+            super::kvrpcpb::RawBatchGetByIndexRequest::new()
+        }
+    }
+
+    pub fn get_RawBatchGetByIndex(&self) -> &super::kvrpcpb::RawBatchGetByIndexRequest {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchGetByIndex(ref v)) => v,
+            _ => super::kvrpcpb::RawBatchGetByIndexRequest::default_instance(),
+        }
+    }
+
     // .tikvpb.BatchCommandsEmptyRequest Empty = 255;
 
     pub fn clear_Empty(&mut self) {
@@ -1813,6 +1915,16 @@ impl ::protobuf::Message for BatchCommandsRequest_Request {
                 return false;
             }
         }
+        if let Some(BatchCommandsRequest_Request_oneof_cmd::RawGetByIndex(ref v)) = self.cmd {
+            if !v.is_initialized() {
+                return false;
+            }
+        }
+        if let Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchGetByIndex(ref v)) = self.cmd {
+            if !v.is_initialized() {
+                return false;
+            }
+        }
         if let Some(BatchCommandsRequest_Request_oneof_cmd::Empty(ref v)) = self.cmd {
             if !v.is_initialized() {
                 return false;
@@ -1987,6 +2099,18 @@ impl ::protobuf::Message for BatchCommandsRequest_Request {
                     }
                     self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(is.read_message()?));
                 },
+                102 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawGetByIndex(is.read_message()?));
+                },
+                103 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    self.cmd = ::std::option::Option::Some(BatchCommandsRequest_Request_oneof_cmd::RawBatchGetByIndex(is.read_message()?));
+                },
                 255 => {
                     if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
                         return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
@@ -2112,6 +2236,14 @@ impl ::protobuf::Message for BatchCommandsRequest_Request {
                     my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
                 },
                 &BatchCommandsRequest_Request_oneof_cmd::RawBatchUpdate(ref v) => {
+                    let len = v.compute_size();
+                    my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+                },
+                &BatchCommandsRequest_Request_oneof_cmd::RawGetByIndex(ref v) => {
+                    let len = v.compute_size();
+                    my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+                },
+                &BatchCommandsRequest_Request_oneof_cmd::RawBatchGetByIndex(ref v) => {
                     let len = v.compute_size();
                     my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
                 },
@@ -2264,6 +2396,16 @@ impl ::protobuf::Message for BatchCommandsRequest_Request {
                     os.write_raw_varint32(v.get_cached_size())?;
                     v.write_to_with_cached_sizes(os)?;
                 },
+                &BatchCommandsRequest_Request_oneof_cmd::RawGetByIndex(ref v) => {
+                    os.write_tag(102, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+                    os.write_raw_varint32(v.get_cached_size())?;
+                    v.write_to_with_cached_sizes(os)?;
+                },
+                &BatchCommandsRequest_Request_oneof_cmd::RawBatchGetByIndex(ref v) => {
+                    os.write_tag(103, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+                    os.write_raw_varint32(v.get_cached_size())?;
+                    v.write_to_with_cached_sizes(os)?;
+                },
                 &BatchCommandsRequest_Request_oneof_cmd::Empty(ref v) => {
                     os.write_tag(255, ::protobuf::wire_format::WireTypeLengthDelimited)?;
                     os.write_raw_varint32(v.get_cached_size())?;
@@ -2345,6 +2487,8 @@ impl ::protobuf::Clear for BatchCommandsRequest_Request {
         self.clear_TxnHeartBeat();
         self.clear_RawUpdate();
         self.clear_RawBatchUpdate();
+        self.clear_RawGetByIndex();
+        self.clear_RawBatchGetByIndex();
         self.clear_Empty();
         self.unknown_fields.clear();
     }
@@ -2648,6 +2792,8 @@ pub enum BatchCommandsResponse_Response_oneof_cmd {
     TxnHeartBeat(super::kvrpcpb::TxnHeartBeatResponse),
     RawUpdate(super::kvrpcpb::RawUpdateResponse),
     RawBatchUpdate(super::kvrpcpb::RawBatchUpdateResponse),
+    RawGetByIndex(super::kvrpcpb::RawGetByIndexResponse),
+    RawBatchGetByIndex(super::kvrpcpb::RawBatchGetByIndexResponse),
     Empty(BatchCommandsEmptyResponse),
 }
 
@@ -2681,6 +2827,8 @@ impl crate::text::PbPrint for BatchCommandsResponse_Response_oneof_cmd {
             BatchCommandsResponse_Response_oneof_cmd::TxnHeartBeat(v) => crate::text::PbPrint::fmt(v, name, buf),
             BatchCommandsResponse_Response_oneof_cmd::RawUpdate(v) => crate::text::PbPrint::fmt(v, name, buf),
             BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(v) => crate::text::PbPrint::fmt(v, name, buf),
+            BatchCommandsResponse_Response_oneof_cmd::RawGetByIndex(v) => crate::text::PbPrint::fmt(v, name, buf),
+            BatchCommandsResponse_Response_oneof_cmd::RawBatchGetByIndex(v) => crate::text::PbPrint::fmt(v, name, buf),
             BatchCommandsResponse_Response_oneof_cmd::Empty(v) => crate::text::PbPrint::fmt(v, name, buf),
         }
     }
@@ -4014,6 +4162,104 @@ impl BatchCommandsResponse_Response {
         }
     }
 
+    // .kvrpcpb.RawGetByIndexResponse RawGetByIndex = 102;
+
+    pub fn clear_RawGetByIndex(&mut self) {
+        self.cmd = ::std::option::Option::None;
+    }
+
+    pub fn has_RawGetByIndex(&self) -> bool {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawGetByIndex(..)) => true,
+            _ => false,
+        }
+    }
+
+    // Param is passed by value, moved
+    pub fn set_RawGetByIndex(&mut self, v: super::kvrpcpb::RawGetByIndexResponse) {
+        self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawGetByIndex(v))
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_RawGetByIndex(&mut self) -> &mut super::kvrpcpb::RawGetByIndexResponse {
+        if let ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawGetByIndex(_)) = self.cmd {
+        } else {
+            self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawGetByIndex(super::kvrpcpb::RawGetByIndexResponse::new()));
+        }
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawGetByIndex(ref mut v)) => v,
+            _ => panic!(),
+        }
+    }
+
+    // Take field
+    pub fn take_RawGetByIndex(&mut self) -> super::kvrpcpb::RawGetByIndexResponse {
+        if self.has_RawGetByIndex() {
+            match self.cmd.take() {
+                ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawGetByIndex(v)) => v,
+                _ => panic!(),
+            }
+        } else {
+            super::kvrpcpb::RawGetByIndexResponse::new()
+        }
+    }
+
+    pub fn get_RawGetByIndex(&self) -> &super::kvrpcpb::RawGetByIndexResponse {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawGetByIndex(ref v)) => v,
+            _ => super::kvrpcpb::RawGetByIndexResponse::default_instance(),
+        }
+    }
+
+    // .kvrpcpb.RawBatchGetByIndexResponse RawBatchGetByIndex = 103;
+
+    pub fn clear_RawBatchGetByIndex(&mut self) {
+        self.cmd = ::std::option::Option::None;
+    }
+
+    pub fn has_RawBatchGetByIndex(&self) -> bool {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchGetByIndex(..)) => true,
+            _ => false,
+        }
+    }
+
+    // Param is passed by value, moved
+    pub fn set_RawBatchGetByIndex(&mut self, v: super::kvrpcpb::RawBatchGetByIndexResponse) {
+        self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchGetByIndex(v))
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_RawBatchGetByIndex(&mut self) -> &mut super::kvrpcpb::RawBatchGetByIndexResponse {
+        if let ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchGetByIndex(_)) = self.cmd {
+        } else {
+            self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchGetByIndex(super::kvrpcpb::RawBatchGetByIndexResponse::new()));
+        }
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchGetByIndex(ref mut v)) => v,
+            _ => panic!(),
+        }
+    }
+
+    // Take field
+    pub fn take_RawBatchGetByIndex(&mut self) -> super::kvrpcpb::RawBatchGetByIndexResponse {
+        if self.has_RawBatchGetByIndex() {
+            match self.cmd.take() {
+                ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchGetByIndex(v)) => v,
+                _ => panic!(),
+            }
+        } else {
+            super::kvrpcpb::RawBatchGetByIndexResponse::new()
+        }
+    }
+
+    pub fn get_RawBatchGetByIndex(&self) -> &super::kvrpcpb::RawBatchGetByIndexResponse {
+        match self.cmd {
+            ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchGetByIndex(ref v)) => v,
+            _ => super::kvrpcpb::RawBatchGetByIndexResponse::default_instance(),
+        }
+    }
+
     // .tikvpb.BatchCommandsEmptyResponse Empty = 255;
 
     pub fn clear_Empty(&mut self) {
@@ -4201,6 +4447,16 @@ impl ::protobuf::Message for BatchCommandsResponse_Response {
                 return false;
             }
         }
+        if let Some(BatchCommandsResponse_Response_oneof_cmd::RawGetByIndex(ref v)) = self.cmd {
+            if !v.is_initialized() {
+                return false;
+            }
+        }
+        if let Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchGetByIndex(ref v)) = self.cmd {
+            if !v.is_initialized() {
+                return false;
+            }
+        }
         if let Some(BatchCommandsResponse_Response_oneof_cmd::Empty(ref v)) = self.cmd {
             if !v.is_initialized() {
                 return false;
@@ -4375,6 +4631,18 @@ impl ::protobuf::Message for BatchCommandsResponse_Response {
                     }
                     self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(is.read_message()?));
                 },
+                102 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawGetByIndex(is.read_message()?));
+                },
+                103 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    self.cmd = ::std::option::Option::Some(BatchCommandsResponse_Response_oneof_cmd::RawBatchGetByIndex(is.read_message()?));
+                },
                 255 => {
                     if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
                         return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
@@ -4500,6 +4768,14 @@ impl ::protobuf::Message for BatchCommandsResponse_Response {
                     my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
                 },
                 &BatchCommandsResponse_Response_oneof_cmd::RawBatchUpdate(ref v) => {
+                    let len = v.compute_size();
+                    my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+                },
+                &BatchCommandsResponse_Response_oneof_cmd::RawGetByIndex(ref v) => {
+                    let len = v.compute_size();
+                    my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+                },
+                &BatchCommandsResponse_Response_oneof_cmd::RawBatchGetByIndex(ref v) => {
                     let len = v.compute_size();
                     my_size += 2 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
                 },
@@ -4652,6 +4928,16 @@ impl ::protobuf::Message for BatchCommandsResponse_Response {
                     os.write_raw_varint32(v.get_cached_size())?;
                     v.write_to_with_cached_sizes(os)?;
                 },
+                &BatchCommandsResponse_Response_oneof_cmd::RawGetByIndex(ref v) => {
+                    os.write_tag(102, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+                    os.write_raw_varint32(v.get_cached_size())?;
+                    v.write_to_with_cached_sizes(os)?;
+                },
+                &BatchCommandsResponse_Response_oneof_cmd::RawBatchGetByIndex(ref v) => {
+                    os.write_tag(103, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+                    os.write_raw_varint32(v.get_cached_size())?;
+                    v.write_to_with_cached_sizes(os)?;
+                },
                 &BatchCommandsResponse_Response_oneof_cmd::Empty(ref v) => {
                     os.write_tag(255, ::protobuf::wire_format::WireTypeLengthDelimited)?;
                     os.write_raw_varint32(v.get_cached_size())?;
@@ -4733,6 +5019,8 @@ impl ::protobuf::Clear for BatchCommandsResponse_Response {
         self.clear_TxnHeartBeat();
         self.clear_RawUpdate();
         self.clear_RawBatchUpdate();
+        self.clear_RawGetByIndex();
+        self.clear_RawBatchGetByIndex();
         self.clear_Empty();
         self.unknown_fields.clear();
     }
