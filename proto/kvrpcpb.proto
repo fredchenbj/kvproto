@@ -74,6 +74,10 @@ message Context {
     bool handle_time = 10; // true means return handle time detail
     bool scan_detail = 11; // true means return scan cf's detail
     bool replica_read = 12;
+
+	// After a region applys Raft logs to `applied_index`, we can get a
+    // snapshot for the region even if the peer is follower.
+    uint64 applied_index = 15;
 }
 
 message HandleTime {
