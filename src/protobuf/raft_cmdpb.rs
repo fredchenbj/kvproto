@@ -9559,6 +9559,7 @@ pub struct RaftRequestHeader {
     pub term: u64,
     pub sync_log: bool,
     pub replica_read: bool,
+    pub applied_index: u64,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -9735,6 +9736,21 @@ impl RaftRequestHeader {
     pub fn get_replica_read(&self) -> bool {
         self.replica_read
     }
+
+    // uint64 applied_index = 9;
+
+    pub fn clear_applied_index(&mut self) {
+        self.applied_index = 0;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_applied_index(&mut self, v: u64) {
+        self.applied_index = v;
+    }
+
+    pub fn get_applied_index(&self) -> u64 {
+        self.applied_index
+    }
 }
 
 impl ::protobuf::Message for RaftRequestHeader {
@@ -9800,6 +9816,13 @@ impl ::protobuf::Message for RaftRequestHeader {
                     let tmp = is.read_bool()?;
                     self.replica_read = tmp;
                 },
+                9 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_uint64()?;
+                    self.applied_index = tmp;
+                },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
                 },
@@ -9838,6 +9861,9 @@ impl ::protobuf::Message for RaftRequestHeader {
         if self.replica_read != false {
             my_size += 2;
         }
+        if self.applied_index != 0 {
+            my_size += ::protobuf::rt::value_size(9, self.applied_index, ::protobuf::wire_format::WireTypeVarint);
+        }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
         my_size
@@ -9871,6 +9897,9 @@ impl ::protobuf::Message for RaftRequestHeader {
         }
         if self.replica_read != false {
             os.write_bool(8, self.replica_read)?;
+        }
+        if self.applied_index != 0 {
+            os.write_uint64(9, self.applied_index)?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
         ::std::result::Result::Ok(())
@@ -9927,6 +9956,7 @@ impl ::protobuf::Clear for RaftRequestHeader {
         self.clear_term();
         self.clear_sync_log();
         self.clear_replica_read();
+        self.clear_applied_index();
         self.unknown_fields.clear();
     }
 }
@@ -9944,6 +9974,7 @@ impl crate::text::PbPrint for RaftRequestHeader {
         crate::text::PbPrint::fmt(&self.term, "term", buf);
         crate::text::PbPrint::fmt(&self.sync_log, "sync_log", buf);
         crate::text::PbPrint::fmt(&self.replica_read, "replica_read", buf);
+        crate::text::PbPrint::fmt(&self.applied_index, "applied_index", buf);
         if old_len < buf.len() {
           buf.push(' ');
         }
@@ -9962,6 +9993,7 @@ impl ::std::fmt::Debug for RaftRequestHeader {
         crate::text::PbPrint::fmt(&self.term, "term", &mut s);
         crate::text::PbPrint::fmt(&self.sync_log, "sync_log", &mut s);
         crate::text::PbPrint::fmt(&self.replica_read, "replica_read", &mut s);
+        crate::text::PbPrint::fmt(&self.applied_index, "applied_index", &mut s);
         write!(f, "{}", s)
     }
 }
